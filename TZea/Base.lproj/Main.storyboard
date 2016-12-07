@@ -14,7 +14,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="TZea" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LaunchView" id="BYZ-38-t0r" customClass="ViewController" customModule="TZea" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -135,11 +135,12 @@
                         <outlet property="userIdentifierLabel" destination="hnR-gd-pwk" id="qk0-lG-mUY"/>
                         <outlet property="userImageView" destination="VdR-j1-h4F" id="cLC-Dj-zGK"/>
                         <outlet property="userNameLabel" destination="G5e-ld-CO7" id="FfI-vP-LQV"/>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="ShowLoginView" animates="NO" modalPresentationStyle="fullScreen" id="hqr-b5-PSs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f1F-AS-6pW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1078" y="36"/>
+            <point key="canvasLocation" x="1086" y="37"/>
         </scene>
     </scenes>
     <resources>

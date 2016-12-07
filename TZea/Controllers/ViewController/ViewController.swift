@@ -29,10 +29,14 @@ class ViewController: UIViewController {
     func loggedIn(withSession session: TWTRSession) {
         // set the current session
         TwitterHelper.sharedInstance().currentTwitterSession = session
-        
-        // tell the appdelegate to switch to the UserTweetsView
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.switchToUserTweetsView()
+
+        if presentingViewController != nil {
+            dismiss(animated: true, completion: nil)
+        } else {
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            
+            appDelegate.switchToUserTweetsView()
+        }
     }
 
 }

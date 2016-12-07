@@ -24,15 +24,19 @@ class UserTweetsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        getUserInfo()
+
+        // are we logged in?
+        if TwitterHelper.sharedInstance().currentTwitterSession == nil {
+            performSegue(withIdentifier: "ShowLoginView", sender: nil)
+        } else {
+            getUserInfo()
+        }
     }
     
     @IBAction func signOut(_ sender: UIButton) {
         TwitterHelper.sharedInstance().signOutOfTwitter()
         
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.switchToLaunchView()
+        performSegue(withIdentifier: "ShowLoginView", sender: nil)
     }
     
     private func getUserInfo() {

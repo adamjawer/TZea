@@ -81,6 +81,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func switchToLaunchView() {
         setRootViewController(forIdentifier: StoryboardIdentifier.launchView)
     }
-        
+    
 }
 
