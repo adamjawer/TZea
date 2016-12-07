@@ -45,7 +45,7 @@
                                     <constraint firstAttribute="width" constant="182" id="he9-Lp-eHV"/>
                                     <constraint firstAttribute="height" constant="37" id="lDI-y6-k0B"/>
                                 </constraints>
-                                <state key="normal" title="Log in with Twitter" image="twtr-icn-logo-white.png">
+                                <state key="normal" title=" Log in with Twitter" image="TwitterIcoLogoWhite">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -77,9 +77,36 @@
             </objects>
             <point key="canvasLocation" x="32.799999999999997" y="37.331334332833585"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="jP3-bg-5rG">
+            <objects>
+                <viewController storyboardIdentifier="UserTweetsView" id="H8Q-gt-DJ0" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="5tK-og-u7T"/>
+                        <viewControllerLayoutGuide type="bottom" id="U3f-DP-94K"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Rxu-7L-Li7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tweets" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3WH-r2-zg5">
+                                <rect key="frame" x="166" y="107" width="55" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="f1F-AS-6pW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1078" y="36"/>
+        </scene>
     </scenes>
     <resources>
         <image name="IzeaLogo" width="200" height="174"/>
-        <image name="twtr-icn-logo-white.png" width="16" height="13"/>
+        <image name="TwitterIcoLogoWhite" width="16" height="13"/>
     </resources>
 </document>

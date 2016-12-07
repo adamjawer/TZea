@@ -14,8 +14,11 @@ import TwitterKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    
+    // MARK: - App Lifecycle
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        Twitter.sharedInstance().start(withConsumerKey: "jjYEc7o8G14q6nBQHgNYlVVNb", consumerSecret: "TqZleyy69YNTpJETteqsll7kdJBYquqoJaLi2tXQnnTSi5fDig")
         Fabric.with([Twitter.self])
         
         return true
@@ -43,6 +46,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    
+    // MARK: - Helpers
+    func switchToUserTweetsView() {
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        let vc = sb.instantiateViewController(withIdentifier: "UserTweetsView")
+        
+        window?.rootViewController = vc
+    }
+    
 
 }
 
