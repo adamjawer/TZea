@@ -139,6 +139,13 @@
                                     <action selector="signOut:" destination="H8Q-gt-DJ0" eventType="touchUpInside" id="d5g-UT-wzs"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dbC-wB-cr8">
+                                <rect key="frame" x="281" y="629" width="78" height="30"/>
+                                <state key="normal" title="Get Tweets"/>
+                                <connections>
+                                    <action selector="getTweets:" destination="H8Q-gt-DJ0" eventType="touchUpInside" id="rLp-0k-A5R"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -147,6 +154,8 @@
                             <constraint firstItem="G5e-ld-CO7" firstAttribute="top" secondItem="5tK-og-u7T" secondAttribute="bottom" constant="8" id="EHK-GM-Uh4"/>
                             <constraint firstItem="G5e-ld-CO7" firstAttribute="leading" secondItem="VdR-j1-h4F" secondAttribute="trailing" constant="8" id="Edi-lj-wl6"/>
                             <constraint firstItem="VdR-j1-h4F" firstAttribute="leading" secondItem="Rxu-7L-Li7" secondAttribute="leadingMargin" id="Kz5-sh-sXu"/>
+                            <constraint firstItem="U3f-DP-94K" firstAttribute="top" secondItem="dbC-wB-cr8" secondAttribute="bottom" constant="8" id="PUA-6R-J2Y"/>
+                            <constraint firstItem="dbC-wB-cr8" firstAttribute="trailing" secondItem="Rxu-7L-Li7" secondAttribute="trailingMargin" id="SB5-86-CaY"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="hnR-gd-pwk" secondAttribute="trailing" constant="20" id="agA-bR-CRT"/>
                             <constraint firstItem="UfP-KW-7hX" firstAttribute="leading" secondItem="Rxu-7L-Li7" secondAttribute="leadingMargin" id="fBb-bn-DQ2"/>
                             <constraint firstItem="VdR-j1-h4F" firstAttribute="top" secondItem="5tK-og-u7T" secondAttribute="bottom" constant="8" id="hqa-bo-i4G"/>

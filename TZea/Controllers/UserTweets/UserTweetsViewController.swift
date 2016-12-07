@@ -39,6 +39,10 @@ class UserTweetsViewController: UIViewController {
         performSegue(withIdentifier: "ShowLoginView", sender: nil)
     }
     
+    @IBAction func getTweets(_ sender: UIButton) {
+        TwitterHelper.sharedInstance().getTweetsForSessionUser()
+    }
+    
     private func getUserInfo() {
         if let session = TwitterHelper.sharedInstance().currentTwitterSession {
             

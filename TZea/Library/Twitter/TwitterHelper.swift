@@ -121,9 +121,6 @@ class TwitterHelper {
                     if let jsonResult = rawJsonResult as? Dictionary<String, Any> {
                         completion(jsonResult, nil)
                     }
-                    
-                    // http://pbs.twimg.com/profile_images/806259878624837632/0UNKJceK_normal.jpg
-                    // https://pbs.twimg.com/profile_images/806259878624837632/0UNKJceK_normal.jpg
                 }
             } catch let error as NSError {
                 completion(nil, error)
@@ -133,6 +130,54 @@ class TwitterHelper {
             //(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError)
         }
 
+    }
+    
+    func getTweetsForSessionUser() {
+        let userId = currentTwitterSession?.userID
+        let client = TWTRAPIClient(userID: userId)
+        
+        var error: NSError?
+        
+        let endPoint = "https://api.twitter.com/1.1/statuses/user_timeline.json"
+        
+        var parameters = Dictionary<String, String>()
+        
+        
+        parameters["user_id"] = userId!
+//        parameters["count"] = "20"
+//        parameters["exclude_replies"] = "true"
+        parameters["trim_user"] = "true"
+        
+        let request = client.urlRequest(withMethod: "GET",
+                                        url: endPoint,
+                                        parameters: parameters,
+                                        error: &error)
+        
+        client.sendTwitterRequest(request) { (response, data, error) in
+            guard data != nil else {
+                print("Error with urlRequest")
+                return
+            }
+            
+            do {
+                if let data = data {
+                    let rawJsonResult = try JSONSerialization.jsonObject(with: data, options: [])
+                    
+                    if let jsonResult = rawJsonResult as? [Dictionary<String, Any>] {
+                        
+                        for tweet in jsonResult {
+                            // get the text of the tweet
+                            if let text = tweet["text"] {
+                                print(text)
+                            }
+                        }
+                    }
+                }
+            } catch let error as NSError {
+                print("Fetching error: \(error), \(error.userInfo)")
+            }
+            
+        }
     }
 }
 
