@@ -1,0 +1,6 @@
+target 'TZea' do
+    use_frameworks!
+    pod 'Fabric'
+    pod 'TwitterKit'
+    pod 'TwitterCore'
+end

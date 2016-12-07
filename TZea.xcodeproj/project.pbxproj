@@ -7,13 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		138766AD0EF88CAFBBE8234E /* Pods_TZea.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51747FEB48E20AF0EA0D8695 /* Pods_TZea.framework */; };
 		48635B271DF76043009B813E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48635B261DF76043009B813E /* AppDelegate.swift */; };
-		48635B291DF76043009B813E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48635B281DF76043009B813E /* ViewController.swift */; };
 		48635B2C1DF76043009B813E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48635B2A1DF76043009B813E /* Main.storyboard */; };
 		48635B2E1DF76043009B813E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48635B2D1DF76043009B813E /* Assets.xcassets */; };
 		48635B311DF76043009B813E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48635B2F1DF76043009B813E /* LaunchScreen.storyboard */; };
 		48635B3C1DF76043009B813E /* TZeaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48635B3B1DF76043009B813E /* TZeaTests.swift */; };
 		48635B471DF76043009B813E /* TZeaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48635B461DF76043009B813E /* TZeaUITests.swift */; };
+		48635B5D1DF767A7009B813E /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 48635B5C1DF767A7009B813E /* Podfile */; };
+		48F1E3071DF7ACBA00ECBB91 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48F1E3061DF7ACBA00ECBB91 /* Accounts.framework */; };
+		48F1E30E1DF7B59B00ECBB91 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F1E30D1DF7B59B00ECBB91 /* ViewController.swift */; };
+		48F1E3121DF7B60100ECBB91 /* TwitterHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F1E3111DF7B60100ECBB91 /* TwitterHelper.swift */; };
+		48F1E3151DF7BB1700ECBB91 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F1E3141DF7BB1700ECBB91 /* GradientView.swift */; };
+		48F1E3181DF7BB5D00ECBB91 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F1E3171DF7BB5D00ECBB91 /* UIColor+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,9 +40,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		16AFE3D314A4E3896C484B00 /* Pods-TZea.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TZea.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TZea/Pods-TZea.debug.xcconfig"; sourceTree = "<group>"; };
 		48635B231DF76043009B813E /* TZea.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TZea.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48635B261DF76043009B813E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		48635B281DF76043009B813E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		48635B2B1DF76043009B813E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		48635B2D1DF76043009B813E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		48635B301DF76043009B813E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +53,14 @@
 		48635B421DF76043009B813E /* TZeaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TZeaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		48635B461DF76043009B813E /* TZeaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TZeaUITests.swift; sourceTree = "<group>"; };
 		48635B481DF76043009B813E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		48635B5C1DF767A7009B813E /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		48F1E3061DF7ACBA00ECBB91 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		48F1E30D1DF7B59B00ECBB91 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		48F1E3111DF7B60100ECBB91 /* TwitterHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterHelper.swift; sourceTree = "<group>"; };
+		48F1E3141DF7BB1700ECBB91 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		48F1E3171DF7BB5D00ECBB91 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
+		51747FEB48E20AF0EA0D8695 /* Pods_TZea.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TZea.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6122782699AF824FDD55FD10 /* Pods-TZea.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TZea.release.xcconfig"; path = "Pods/Target Support Files/Pods-TZea/Pods-TZea.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +68,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48F1E3071DF7ACBA00ECBB91 /* Accounts.framework in Frameworks */,
+				138766AD0EF88CAFBBE8234E /* Pods_TZea.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,10 +93,13 @@
 		48635B1A1DF76043009B813E = {
 			isa = PBXGroup;
 			children = (
+				48635B5C1DF767A7009B813E /* Podfile */,
 				48635B251DF76043009B813E /* TZea */,
 				48635B3A1DF76043009B813E /* TZeaTests */,
 				48635B451DF76043009B813E /* TZeaUITests */,
 				48635B241DF76043009B813E /* Products */,
+				48635B541DF760C4009B813E /* Frameworks */,
+				5FD194DB42F3E4DB3A9AE90E /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,12 +116,12 @@
 		48635B251DF76043009B813E /* TZea */ = {
 			isa = PBXGroup;
 			children = (
-				48635B261DF76043009B813E /* AppDelegate.swift */,
-				48635B281DF76043009B813E /* ViewController.swift */,
-				48635B2A1DF76043009B813E /* Main.storyboard */,
-				48635B2D1DF76043009B813E /* Assets.xcassets */,
-				48635B2F1DF76043009B813E /* LaunchScreen.storyboard */,
-				48635B321DF76043009B813E /* Info.plist */,
+				48F1E30F1DF7B5B500ECBB91 /* Library */,
+				48F1E30B1DF7B55200ECBB91 /* Controllers */,
+				48F1E3091DF7B53200ECBB91 /* UI */,
+				48F1E3081DF7B52800ECBB91 /* AppDelegate */,
+				48F1E30A1DF7B53C00ECBB91 /* Resources */,
+				48635B5F1DF7688F009B813E /* Supporting Files */,
 			);
 			path = TZea;
 			sourceTree = "<group>";
@@ -125,6 +144,107 @@
 			path = TZeaUITests;
 			sourceTree = "<group>";
 		};
+		48635B541DF760C4009B813E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				48F1E3061DF7ACBA00ECBB91 /* Accounts.framework */,
+				51747FEB48E20AF0EA0D8695 /* Pods_TZea.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		48635B5F1DF7688F009B813E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				48635B2F1DF76043009B813E /* LaunchScreen.storyboard */,
+				48635B321DF76043009B813E /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		48F1E3081DF7B52800ECBB91 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				48635B261DF76043009B813E /* AppDelegate.swift */,
+			);
+			name = AppDelegate;
+			sourceTree = "<group>";
+		};
+		48F1E3091DF7B53200ECBB91 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				48635B2A1DF76043009B813E /* Main.storyboard */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		48F1E30A1DF7B53C00ECBB91 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				48635B2D1DF76043009B813E /* Assets.xcassets */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		48F1E30B1DF7B55200ECBB91 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				48F1E30C1DF7B58C00ECBB91 /* ViewController */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		48F1E30C1DF7B58C00ECBB91 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				48F1E30D1DF7B59B00ECBB91 /* ViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		48F1E30F1DF7B5B500ECBB91 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				48F1E3161DF7BB4600ECBB91 /* Extensions */,
+				48F1E3131DF7BAFB00ECBB91 /* GradientView */,
+				48F1E3101DF7B5CA00ECBB91 /* Twitter */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
+		48F1E3101DF7B5CA00ECBB91 /* Twitter */ = {
+			isa = PBXGroup;
+			children = (
+				48F1E3111DF7B60100ECBB91 /* TwitterHelper.swift */,
+			);
+			path = Twitter;
+			sourceTree = "<group>";
+		};
+		48F1E3131DF7BAFB00ECBB91 /* GradientView */ = {
+			isa = PBXGroup;
+			children = (
+				48F1E3141DF7BB1700ECBB91 /* GradientView.swift */,
+			);
+			path = GradientView;
+			sourceTree = "<group>";
+		};
+		48F1E3161DF7BB4600ECBB91 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				48F1E3171DF7BB5D00ECBB91 /* UIColor+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		5FD194DB42F3E4DB3A9AE90E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				16AFE3D314A4E3896C484B00 /* Pods-TZea.debug.xcconfig */,
+				6122782699AF824FDD55FD10 /* Pods-TZea.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -132,9 +252,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 48635B4B1DF76043009B813E /* Build configuration list for PBXNativeTarget "TZea" */;
 			buildPhases = (
+				41CB94E3BFD6BFE24953E08F /* [CP] Check Pods Manifest.lock */,
 				48635B1F1DF76043009B813E /* Sources */,
 				48635B201DF76043009B813E /* Frameworks */,
 				48635B211DF76043009B813E /* Resources */,
+				62146E92488DE7CC4D16268B /* [CP] Embed Pods Frameworks */,
+				26AAE348E0C9312E8C98C8E6 /* [CP] Copy Pods Resources */,
+				48635B5E1DF76833009B813E /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -193,6 +317,7 @@
 				TargetAttributes = {
 					48635B221DF76043009B813E = {
 						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = L67Z545F8Q;
 						ProvisioningStyle = Automatic;
 					};
 					48635B361DF76043009B813E = {
@@ -234,6 +359,7 @@
 			files = (
 				48635B311DF76043009B813E /* LaunchScreen.storyboard in Resources */,
 				48635B2E1DF76043009B813E /* Assets.xcassets in Resources */,
+				48635B5D1DF767A7009B813E /* Podfile in Resources */,
 				48635B2C1DF76043009B813E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -254,13 +380,77 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		26AAE348E0C9312E8C98C8E6 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TZea/Pods-TZea-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		41CB94E3BFD6BFE24953E08F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		48635B5E1DF76833009B813E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" c77dd5c1653242c246278e759a4e45749ed7d7ab b37d0142417406af24642c528f7dd61b3975512d33548662fd1d9698599cf0b4";
+		};
+		62146E92488DE7CC4D16268B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TZea/Pods-TZea-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		48635B1F1DF76043009B813E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				48635B291DF76043009B813E /* ViewController.swift in Sources */,
+				48F1E30E1DF7B59B00ECBB91 /* ViewController.swift in Sources */,
+				48F1E3181DF7BB5D00ECBB91 /* UIColor+Extensions.swift in Sources */,
 				48635B271DF76043009B813E /* AppDelegate.swift in Sources */,
+				48F1E3151DF7BB1700ECBB91 /* GradientView.swift in Sources */,
+				48F1E3121DF7B60100ECBB91 /* TwitterHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,6 +523,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -383,6 +574,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -410,8 +602,10 @@
 		};
 		48635B4C1DF76043009B813E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 16AFE3D314A4E3896C484B00 /* Pods-TZea.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = L67Z545F8Q;
 				INFOPLIST_FILE = TZea/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.adamjawer.TZea;
@@ -422,8 +616,10 @@
 		};
 		48635B4D1DF76043009B813E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6122782699AF824FDD55FD10 /* Pods-TZea.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = L67Z545F8Q;
 				INFOPLIST_FILE = TZea/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.adamjawer.TZea;
@@ -505,6 +701,7 @@
 				48635B4D1DF76043009B813E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		48635B4E1DF76043009B813E /* Build configuration list for PBXNativeTarget "TZeaTests" */ = {
 			isa = XCConfigurationList;
@@ -513,6 +710,7 @@
 				48635B501DF76043009B813E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		48635B511DF76043009B813E /* Build configuration list for PBXNativeTarget "TZeaUITests" */ = {
 			isa = XCConfigurationList;
@@ -521,6 +719,7 @@
 				48635B531DF76043009B813E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
