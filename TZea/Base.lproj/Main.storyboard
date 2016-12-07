@@ -34,7 +34,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Making Twitter IZEA" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xx3-Kj-CKR">
-                                <rect key="frame" x="85" y="216" width="205.5" height="26.5"/>
+                                <rect key="frame" x="85" y="216" width="206" height="27"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
                                 <color key="textColor" red="0.57647058823529407" green="0.16470588235294117" blue="0.46666666666666667" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -58,11 +58,32 @@
                                     <action selector="loginWithTwitter:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Mjh-fw-gIt"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qXg-bP-q8b">
+                                <rect key="frame" x="96" y="362" width="182" height="37"/>
+                                <color key="backgroundColor" red="0.31841802519227674" green="0.57156154918536373" blue="0.73305749344679483" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="182" id="7da-af-5je"/>
+                                    <constraint firstAttribute="height" constant="37" id="ivr-a7-4Xd"/>
+                                </constraints>
+                                <state key="normal" title=" Add an Account" image="WhitePlusButton16x16">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="addAcount:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QqK-9a-YSJ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="Qc4-Rz-ezJ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="4NN-xD-Ojm"/>
                             <constraint firstItem="grG-fw-oec" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="7ZZ-Q7-vrA"/>
+                            <constraint firstItem="qXg-bP-q8b" firstAttribute="leading" secondItem="TCz-Vd-Qyh" secondAttribute="leading" id="GUC-Vi-TJd"/>
                             <constraint firstAttribute="trailing" secondItem="grG-fw-oec" secondAttribute="trailing" id="JuQ-0w-n82"/>
+                            <constraint firstItem="qXg-bP-q8b" firstAttribute="height" secondItem="TCz-Vd-Qyh" secondAttribute="height" id="YfH-J6-Vai"/>
                             <constraint firstItem="TCz-Vd-Qyh" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" priority="250" id="fOq-53-y6D"/>
                             <constraint firstItem="xx3-Kj-CKR" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fpi-wA-fVe"/>
                             <constraint firstItem="grG-fw-oec" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="fzl-z6-QZO"/>
@@ -71,6 +92,8 @@
                             <constraint firstItem="TCz-Vd-Qyh" firstAttribute="top" relation="greaterThanOrEqual" secondItem="xx3-Kj-CKR" secondAttribute="bottom" constant="16" id="lPM-yW-WEI"/>
                             <constraint firstItem="xx3-Kj-CKR" firstAttribute="top" secondItem="Qc4-Rz-ezJ" secondAttribute="bottom" constant="8" id="m49-fe-ql2"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="grG-fw-oec" secondAttribute="bottom" id="rQE-XM-rRA"/>
+                            <constraint firstItem="qXg-bP-q8b" firstAttribute="top" secondItem="TCz-Vd-Qyh" secondAttribute="bottom" constant="10" id="rik-kR-Jx3"/>
+                            <constraint firstItem="qXg-bP-q8b" firstAttribute="trailing" secondItem="TCz-Vd-Qyh" secondAttribute="trailing" id="wHv-Iu-a1Z"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -146,5 +169,6 @@
     <resources>
         <image name="IzeaLogo" width="200" height="174"/>
         <image name="TwitterIcoLogoWhite" width="16" height="13"/>
+        <image name="WhitePlusButton16x16" width="16" height="16"/>
     </resources>
 </document>

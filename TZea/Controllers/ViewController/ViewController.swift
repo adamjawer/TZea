@@ -15,6 +15,10 @@ class ViewController: UIViewController {
         loginWith(method: .all)
     }
     
+    @IBAction func addAcount(_ sender: UIButton) {
+        loginWith(method: .webBased)
+    }
+    
     func loginWith(method: TWTRLoginMethod) {
         Twitter.sharedInstance().logIn(withMethods: method) { (session, error) in
             if let session = session {
@@ -25,7 +29,6 @@ class ViewController: UIViewController {
         }
     }
 
-    
     func loggedIn(withSession session: TWTRSession) {
         // set the current session
         TwitterHelper.sharedInstance().currentTwitterSession = session
