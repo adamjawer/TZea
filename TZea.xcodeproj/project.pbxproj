@@ -15,6 +15,9 @@
 		48635B3C1DF76043009B813E /* TZeaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48635B3B1DF76043009B813E /* TZeaTests.swift */; };
 		48635B471DF76043009B813E /* TZeaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48635B461DF76043009B813E /* TZeaUITests.swift */; };
 		48635B5D1DF767A7009B813E /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 48635B5C1DF767A7009B813E /* Podfile */; };
+		48D50A871DF8AE54003A496C /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D50A861DF8AE54003A496C /* ComposeViewController.swift */; };
+		48D50A8A1DF8B0CB003A496C /* ComposeToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D50A891DF8B0CB003A496C /* ComposeToolbar.swift */; };
+		48D50A8C1DF8B0D7003A496C /* ComposeToolbar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48D50A8B1DF8B0D7003A496C /* ComposeToolbar.xib */; };
 		48F1E3071DF7ACBA00ECBB91 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48F1E3061DF7ACBA00ECBB91 /* Accounts.framework */; };
 		48F1E30E1DF7B59B00ECBB91 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F1E30D1DF7B59B00ECBB91 /* ViewController.swift */; };
 		48F1E3121DF7B60100ECBB91 /* TwitterHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F1E3111DF7B60100ECBB91 /* TwitterHelper.swift */; };
@@ -57,6 +60,9 @@
 		48635B5C1DF767A7009B813E /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		4894696C1DF83DDE00D5CD0E /* TZea.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TZea.entitlements; sourceTree = "<group>"; };
 		4894696D1DF83EF900D5CD0E /* TwitterKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TwitterKitResources.bundle; path = Pods/TwitterKit/iOS/TwitterKit.framework/Versions/A/Resources/TwitterKitResources.bundle; sourceTree = "<group>"; };
+		48D50A861DF8AE54003A496C /* ComposeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
+		48D50A891DF8B0CB003A496C /* ComposeToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeToolbar.swift; sourceTree = "<group>"; };
+		48D50A8B1DF8B0D7003A496C /* ComposeToolbar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ComposeToolbar.xib; sourceTree = "<group>"; };
 		48F1E3061DF7ACBA00ECBB91 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		48F1E30D1DF7B59B00ECBB91 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		48F1E3111DF7B60100ECBB91 /* TwitterHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterHelper.swift; sourceTree = "<group>"; };
@@ -168,6 +174,24 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		48D50A851DF8AE3E003A496C /* Compose */ = {
+			isa = PBXGroup;
+			children = (
+				48D50A881DF8B0AD003A496C /* Toolbar */,
+				48D50A861DF8AE54003A496C /* ComposeViewController.swift */,
+			);
+			path = Compose;
+			sourceTree = "<group>";
+		};
+		48D50A881DF8B0AD003A496C /* Toolbar */ = {
+			isa = PBXGroup;
+			children = (
+				48D50A891DF8B0CB003A496C /* ComposeToolbar.swift */,
+				48D50A8B1DF8B0D7003A496C /* ComposeToolbar.xib */,
+			);
+			name = Toolbar;
+			sourceTree = "<group>";
+		};
 		48F1E3081DF7B52800ECBB91 /* AppDelegate */ = {
 			isa = PBXGroup;
 			children = (
@@ -195,6 +219,7 @@
 		48F1E30B1DF7B55200ECBB91 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				48D50A851DF8AE3E003A496C /* Compose */,
 				48F4EFD41DF84795008BC6B4 /* UserTweets */,
 				48F1E30C1DF7B58C00ECBB91 /* ViewController */,
 			);
@@ -381,6 +406,7 @@
 				48635B2E1DF76043009B813E /* Assets.xcassets in Resources */,
 				48635B5D1DF767A7009B813E /* Podfile in Resources */,
 				48635B2C1DF76043009B813E /* Main.storyboard in Resources */,
+				48D50A8C1DF8B0D7003A496C /* ComposeToolbar.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -466,12 +492,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48D50A8A1DF8B0CB003A496C /* ComposeToolbar.swift in Sources */,
 				48F1E30E1DF7B59B00ECBB91 /* ViewController.swift in Sources */,
 				48F1E3181DF7BB5D00ECBB91 /* UIColor+Extensions.swift in Sources */,
 				48635B271DF76043009B813E /* AppDelegate.swift in Sources */,
 				48F1E3151DF7BB1700ECBB91 /* GradientView.swift in Sources */,
 				48F1E3121DF7B60100ECBB91 /* TwitterHelper.swift in Sources */,
 				48F4EFD61DF847BC008BC6B4 /* UserTweetsViewController.swift in Sources */,
+				48D50A871DF8AE54003A496C /* ComposeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

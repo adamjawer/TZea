@@ -50,6 +50,7 @@ class TwitterHelper {
         return self.getTwitterAccounts().count > 0
     }
     
+    /*
     func getCurrentUserImage(callback: TwitterHelperGetImageCallback?) {
         if let session = currentTwitterSession {
             getUserInfo(forSession: session) { (json, error) in
@@ -62,6 +63,7 @@ class TwitterHelper {
                 }
                 
                 if let imageUrlString = json!["profile_image_url_https"] as? String,
+                    
                     let imageUrl = URL(string: imageUrlString) {
                     
                     let name = json!["name"] as? String
@@ -93,8 +95,9 @@ class TwitterHelper {
             callback?(nil, nil, nil)
         }
     }
+    */
     
-    private func getUserInfo(forSession session: TWTRSession, completion: @escaping ((Dictionary<String, Any>?, Error?)->())) {
+    func getUserInfo(forSession session: TWTRSession, completion: @escaping ((Dictionary<String, Any>?, Error?)->())) {
         let userId = session.userID
         let client = TWTRAPIClient(userID: userId)
         let endPoint = "https://api.twitter.com/1.1/users/show.json?user_id=\(userId)"

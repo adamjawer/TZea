@@ -8,18 +8,23 @@
 
 import UIKit
 
-class UserTweetsViewController: UIViewController {
-
-    @IBOutlet weak var userImageView: UIImageView!    
+class UserTweetsHeader: UIView {
+    @IBOutlet weak var userBannerImageView: UIImageView!
+    @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var userIdentifierLabel: UILabel!
+}
+
+class UserTweetsViewController: UIViewController {
+
+    @IBOutlet weak var header: UserTweetsHeader!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // get user info for current user
-        userNameLabel.text = ""
-        userIdentifierLabel.text = ""
+        header.userNameLabel.text = ""
+        header.userIdentifierLabel.text = ""
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -33,7 +38,19 @@ class UserTweetsViewController: UIViewController {
         }
     }
     
-    @IBAction func signOut(_ sender: UIButton) {
+    @IBAction func configButtonPressed(_ sender: UIButton) {
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        actionSheet.addAction(UIAlertAction(title: "Sign out", style: .default) { (action) in
+                self.signOut()
+            }
+        )
+        
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        present(actionSheet, animated: true, completion: nil)
+    }
+    
+    private func signOut() {
         TwitterHelper.sharedInstance().signOutOfTwitter()
         
         performSegue(withIdentifier: "ShowLoginView", sender: nil)
@@ -42,27 +59,88 @@ class UserTweetsViewController: UIViewController {
     @IBAction func getTweets(_ sender: UIButton) {
         TwitterHelper.sharedInstance().getTweetsForSessionUser()
     }
+
+    private func loadBannerImage(atUrl urlString: String) {
+        let queue = OperationQueue()
+        
+        if let imageUrl = URL(string: urlString) {
+            
+            queue.addOperation {
+                do {
+                    let data = try Data(contentsOf: imageUrl)
+                    
+                    OperationQueue.main.addOperation {
+                        let image = UIImage(data: data)
+                        
+                        OperationQueue.main.addOperation {
+                            self.header.userBannerImageView.image = image
+                        }
+                    }
+                } catch let error as NSError {
+                    print("Error downloading data: \(error), \(error.userInfo)")
+                    OperationQueue.main.addOperation {
+                        self.header.userBannerImageView.image = nil // replace with generic image
+                    }
+                }
+            }
+        }
+    }
+    
+    private func loadProfileImage(atUrl urlString: String) {
+        let queue = OperationQueue()
+        
+        if let imageUrl = URL(string: urlString) {
+            
+            queue.addOperation {
+                do {
+                    let data = try Data(contentsOf: imageUrl)
+                    
+                    OperationQueue.main.addOperation {
+                        let image = UIImage(data: data)
+                        
+                        OperationQueue.main.addOperation {
+                            self.header.userImageView.image = image
+                        }
+                    }
+                } catch let error as NSError {
+                    print("Error downloading data: \(error), \(error.userInfo)")
+                    OperationQueue.main.addOperation {
+                        self.header.userImageView.image = nil // replace with generic image
+                    }
+                }
+            }
+        }
+    }
     
     private func getUserInfo() {
         if let session = TwitterHelper.sharedInstance().currentTwitterSession {
             
-            userIdentifierLabel.text = "@\(session.userName)"
+            header.userIdentifierLabel.text = "@\(session.userName)"
             
-            TwitterHelper.sharedInstance().getCurrentUserImage { (image, name, error) in
-                guard error == nil else {
+            // get the userInfo
+            
+            TwitterHelper.sharedInstance().getUserInfo(forSession: session) { (json, error) in
+                guard error == nil, json != nil else {
                     print("Error getting image: \(error)")
                     return
                 }
                 
-                self.userNameLabel.text = name
-                self.userImageView.image = image
+                self.header.userNameLabel.text = json!["name"] as? String ?? ""
+                
+                if let imageUrlString = json!["profile_image_url_https"] as? String {
+                    self.loadProfileImage(atUrl: imageUrlString)
+                }
+
+                if let bannerUrlString = json!["profile_banner_url"] as? String {
+                    self.loadBannerImage(atUrl: bannerUrlString)
+                }
             }
         } else {
             // TODO: - replace with "Generic User Image"
-            userImageView.image = nil
+            header.userImageView.image = nil
 
-            userNameLabel.text = ""
-            userIdentifierLabel.text = ""
+            header.userNameLabel.text = ""
+            header.userIdentifierLabel.text = ""
         }
     }
 }
