@@ -8,6 +8,7 @@
 
 import UIKit
 import Fabric
+import Crashlytics
 import TwitterKit
 
 @UIApplicationMain
@@ -19,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         Twitter.sharedInstance().start(withConsumerKey: "jjYEc7o8G14q6nBQHgNYlVVNb", consumerSecret: "TqZleyy69YNTpJETteqsll7kdJBYquqoJaLi2tXQnnTSi5fDig")
-        Fabric.with([Twitter.self])
+        Fabric.with([Twitter.self, Crashlytics.self])
         
         return true
     }
@@ -48,13 +49,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     
     // MARK: - Helpers
-    func switchToUserTweetsView() {
-        let sb = UIStoryboard(name: "Main", bundle: nil)
-        let vc = sb.instantiateViewController(withIdentifier: "UserTweetsView")
-        
+    
+    private func setRootViewController(forIdentifier identifier: String) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+
+        let vc = storyboard.instantiateViewController(withIdentifier: identifier)
         window?.rootViewController = vc
+
+        /*
+         // This is currently a bug in swift. The instantiateViewController func is supposed to throw an error
+         // It only does that in the objective-c version
+        do {
+            let vc = try sb.instantiateViewController(withIdentifier: identifier)
+            window?.rootViewController = vc
+        } catch let error as NSError {
+            print("Error switching view controllers")
+        }
+         */
+        
     }
     
-
+    private struct StoryboardIdentifier {
+        static let userTweetsView = "UserTweetsView"
+        static let launchView = "LaunchView"
+    }
+    
+    func switchToUserTweetsView() {
+        setRootViewController(forIdentifier: StoryboardIdentifier.userTweetsView)
+    }
+    
+    func switchToLaunchView() {
+        setRootViewController(forIdentifier: StoryboardIdentifier.launchView)
+    }
+        
 }
 

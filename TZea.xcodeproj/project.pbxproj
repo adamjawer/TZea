@@ -20,6 +20,7 @@
 		48F1E3121DF7B60100ECBB91 /* TwitterHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F1E3111DF7B60100ECBB91 /* TwitterHelper.swift */; };
 		48F1E3151DF7BB1700ECBB91 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F1E3141DF7BB1700ECBB91 /* GradientView.swift */; };
 		48F1E3181DF7BB5D00ECBB91 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F1E3171DF7BB5D00ECBB91 /* UIColor+Extensions.swift */; };
+		48F4EFD61DF847BC008BC6B4 /* UserTweetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F4EFD51DF847BC008BC6B4 /* UserTweetsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		48F1E3111DF7B60100ECBB91 /* TwitterHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterHelper.swift; sourceTree = "<group>"; };
 		48F1E3141DF7BB1700ECBB91 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		48F1E3171DF7BB5D00ECBB91 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
+		48F4EFD51DF847BC008BC6B4 /* UserTweetsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTweetsViewController.swift; sourceTree = "<group>"; };
 		51747FEB48E20AF0EA0D8695 /* Pods_TZea.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TZea.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6122782699AF824FDD55FD10 /* Pods-TZea.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TZea.release.xcconfig"; path = "Pods/Target Support Files/Pods-TZea/Pods-TZea.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -193,6 +195,7 @@
 		48F1E30B1DF7B55200ECBB91 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				48F4EFD41DF84795008BC6B4 /* UserTweets */,
 				48F1E30C1DF7B58C00ECBB91 /* ViewController */,
 			);
 			path = Controllers;
@@ -238,6 +241,14 @@
 				48F1E3171DF7BB5D00ECBB91 /* UIColor+Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		48F4EFD41DF84795008BC6B4 /* UserTweets */ = {
+			isa = PBXGroup;
+			children = (
+				48F4EFD51DF847BC008BC6B4 /* UserTweetsViewController.swift */,
+			);
+			path = UserTweets;
 			sourceTree = "<group>";
 		};
 		5FD194DB42F3E4DB3A9AE90E /* Pods */ = {
@@ -460,6 +471,7 @@
 				48635B271DF76043009B813E /* AppDelegate.swift in Sources */,
 				48F1E3151DF7BB1700ECBB91 /* GradientView.swift in Sources */,
 				48F1E3121DF7B60100ECBB91 /* TwitterHelper.swift in Sources */,
+				48F4EFD61DF847BC008BC6B4 /* UserTweetsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
