@@ -18,6 +18,8 @@
 		48D50A871DF8AE54003A496C /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D50A861DF8AE54003A496C /* ComposeViewController.swift */; };
 		48D50A8A1DF8B0CB003A496C /* ComposeToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D50A891DF8B0CB003A496C /* ComposeToolbar.swift */; };
 		48D50A8C1DF8B0D7003A496C /* ComposeToolbar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48D50A8B1DF8B0D7003A496C /* ComposeToolbar.xib */; };
+		48D50A8F1DF8FED6003A496C /* UserTweetsTweetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D50A8E1DF8FED6003A496C /* UserTweetsTweetCell.swift */; };
+		48D50A911DF903AD003A496C /* TZTweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D50A901DF903AD003A496C /* TZTweet.swift */; };
 		48F1E3071DF7ACBA00ECBB91 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48F1E3061DF7ACBA00ECBB91 /* Accounts.framework */; };
 		48F1E30E1DF7B59B00ECBB91 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F1E30D1DF7B59B00ECBB91 /* ViewController.swift */; };
 		48F1E3121DF7B60100ECBB91 /* TwitterHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F1E3111DF7B60100ECBB91 /* TwitterHelper.swift */; };
@@ -63,6 +65,8 @@
 		48D50A861DF8AE54003A496C /* ComposeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
 		48D50A891DF8B0CB003A496C /* ComposeToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeToolbar.swift; sourceTree = "<group>"; };
 		48D50A8B1DF8B0D7003A496C /* ComposeToolbar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ComposeToolbar.xib; sourceTree = "<group>"; };
+		48D50A8E1DF8FED6003A496C /* UserTweetsTweetCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTweetsTweetCell.swift; sourceTree = "<group>"; };
+		48D50A901DF903AD003A496C /* TZTweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TZTweet.swift; sourceTree = "<group>"; };
 		48F1E3061DF7ACBA00ECBB91 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		48F1E30D1DF7B59B00ECBB91 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		48F1E3111DF7B60100ECBB91 /* TwitterHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterHelper.swift; sourceTree = "<group>"; };
@@ -192,6 +196,14 @@
 			name = Toolbar;
 			sourceTree = "<group>";
 		};
+		48D50A8D1DF8FEA8003A496C /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				48D50A8E1DF8FED6003A496C /* UserTweetsTweetCell.swift */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
 		48F1E3081DF7B52800ECBB91 /* AppDelegate */ = {
 			isa = PBXGroup;
 			children = (
@@ -248,6 +260,7 @@
 			isa = PBXGroup;
 			children = (
 				48F1E3111DF7B60100ECBB91 /* TwitterHelper.swift */,
+				48D50A901DF903AD003A496C /* TZTweet.swift */,
 			);
 			path = Twitter;
 			sourceTree = "<group>";
@@ -271,6 +284,7 @@
 		48F4EFD41DF84795008BC6B4 /* UserTweets */ = {
 			isa = PBXGroup;
 			children = (
+				48D50A8D1DF8FEA8003A496C /* Cells */,
 				48F4EFD51DF847BC008BC6B4 /* UserTweetsViewController.swift */,
 			);
 			path = UserTweets;
@@ -493,6 +507,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				48D50A8A1DF8B0CB003A496C /* ComposeToolbar.swift in Sources */,
+				48D50A911DF903AD003A496C /* TZTweet.swift in Sources */,
 				48F1E30E1DF7B59B00ECBB91 /* ViewController.swift in Sources */,
 				48F1E3181DF7BB5D00ECBB91 /* UIColor+Extensions.swift in Sources */,
 				48635B271DF76043009B813E /* AppDelegate.swift in Sources */,
@@ -500,6 +515,7 @@
 				48F1E3121DF7B60100ECBB91 /* TwitterHelper.swift in Sources */,
 				48F4EFD61DF847BC008BC6B4 /* UserTweetsViewController.swift in Sources */,
 				48D50A871DF8AE54003A496C /* ComposeViewController.swift in Sources */,
+				48D50A8F1DF8FED6003A496C /* UserTweetsTweetCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

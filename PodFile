@@ -4,4 +4,5 @@ target 'TZea' do
     pod 'Crashlytics'
     pod 'TwitterKit'
     pod 'TwitterCore'
+    pod 'SwiftyJSON'
 end

@@ -9,6 +9,7 @@
 import Foundation
 import Accounts
 import TwitterKit
+import SwiftyJSON
 
 private var _twitterHelper = TwitterHelper()
 
@@ -16,6 +17,7 @@ typealias TwitterHelperGetImageCallback = (UIImage?, String?, Error?)->()
 
 enum TwitterHelperError: Error {
     case imageJsonError
+    case invalidJsonError
 }
 
 class TwitterHelper {
@@ -50,53 +52,6 @@ class TwitterHelper {
         return self.getTwitterAccounts().count > 0
     }
     
-    /*
-    func getCurrentUserImage(callback: TwitterHelperGetImageCallback?) {
-        if let session = currentTwitterSession {
-            getUserInfo(forSession: session) { (json, error) in
-                // get the imageURL from the json
-                guard error == nil,
-                    json != nil
-                else {
-                    callback?(nil, nil, error)
-                    return
-                }
-                
-                if let imageUrlString = json!["profile_image_url_https"] as? String,
-                    
-                    let imageUrl = URL(string: imageUrlString) {
-                    
-                    let name = json!["name"] as? String
-                    
-                    let queue = OperationQueue()
-                    
-                    queue.addOperation {
-                        do {
-                            let data = try Data(contentsOf: imageUrl)
-                            
-                            OperationQueue.main.addOperation {
-                                let image = UIImage(data: data)
-                                
-                                callback?(image, name, nil)
-                            }
-                        } catch let error as NSError {
-                            print("Error downloading data: \(error), \(error.userInfo)")
-
-                            callback?(nil, name, error)
-                        }
-                    }
-                } else {
-                    // Unable to get image url string from json
-                    callback?(nil, nil, TwitterHelperError.imageJsonError)
-                }
-            }
-        } else {
-            // There is no current user
-            callback?(nil, nil, nil)
-        }
-    }
-    */
-    
     func getUserInfo(forSession session: TWTRSession, completion: @escaping ((Dictionary<String, Any>?, Error?)->())) {
         let userId = session.userID
         let client = TWTRAPIClient(userID: userId)
@@ -128,14 +83,11 @@ class TwitterHelper {
             } catch let error as NSError {
                 completion(nil, error)
             }
-            
-            
-            //(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError)
         }
 
     }
     
-    func getTweetsForSessionUser() {
+    func getTweetsForSessionUser(completion: @escaping (([TZTweet]?, Error?)->())) {
         let userId = currentTwitterSession?.userID
         let client = TWTRAPIClient(userID: userId)
         
@@ -149,7 +101,7 @@ class TwitterHelper {
         parameters["user_id"] = userId!
 //        parameters["count"] = "20"
 //        parameters["exclude_replies"] = "true"
-        parameters["trim_user"] = "true"
+//        parameters["trim_user"] = "true"
         
         let request = client.urlRequest(withMethod: "GET",
                                         url: endPoint,
@@ -158,7 +110,7 @@ class TwitterHelper {
         
         client.sendTwitterRequest(request) { (response, data, error) in
             guard data != nil else {
-                print("Error with urlRequest")
+                completion(nil, error)
                 return
             }
             
@@ -168,16 +120,20 @@ class TwitterHelper {
                     
                     if let jsonResult = rawJsonResult as? [Dictionary<String, Any>] {
                         
-                        for tweet in jsonResult {
-                            // get the text of the tweet
-                            if let text = tweet["text"] {
-                                print(text)
-                            }
+                        var tweets = [TZTweet]()
+                        
+                        for jsonTweet in jsonResult {
+                            tweets.append(TZTweet(withJson: jsonTweet))
                         }
+                        
+                        completion(tweets, nil)
+                    } else {
+                        completion(nil, TwitterHelperError.invalidJsonError)
                     }
+                    
                 }
-            } catch let error as NSError {
-                print("Fetching error: \(error), \(error.userInfo)")
+            } catch let error {
+                completion(nil, error)
             }
             
         }

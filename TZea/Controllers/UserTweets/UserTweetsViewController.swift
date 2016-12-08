@@ -18,6 +18,9 @@ class UserTweetsHeader: UIView {
 class UserTweetsViewController: UIViewController {
 
     @IBOutlet weak var header: UserTweetsHeader!
+    @IBOutlet weak var tableView: UITableView!
+    
+    fileprivate var tweetsDataSource = [TZTweet]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +38,7 @@ class UserTweetsViewController: UIViewController {
             performSegue(withIdentifier: "ShowLoginView", sender: nil)
         } else {
             getUserInfo()
+            loadTweets()
         }
     }
     
@@ -56,8 +60,16 @@ class UserTweetsViewController: UIViewController {
         performSegue(withIdentifier: "ShowLoginView", sender: nil)
     }
     
-    @IBAction func getTweets(_ sender: UIButton) {
-        TwitterHelper.sharedInstance().getTweetsForSessionUser()
+    func loadTweets() {
+        TwitterHelper.sharedInstance().getTweetsForSessionUser { (tweets, error) in
+            guard error == nil, tweets != nil else {
+                print("Error getting tweets: \(error)")
+                return
+            }
+            
+            self.tweetsDataSource = tweets!
+            self.tableView.reloadData()
+        }
     }
 
     private func loadBannerImage(atUrl urlString: String) {
@@ -142,5 +154,25 @@ class UserTweetsViewController: UIViewController {
             header.userNameLabel.text = ""
             header.userIdentifierLabel.text = ""
         }
+    }
+}
+
+extension UserTweetsViewController: UITableViewDataSource, UITableViewDelegate {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return tweetsDataSource.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TweetCellId", for: indexPath) as! UserTweetsTweetCell
+        
+        let tweet = tweetsDataSource[indexPath.row]
+        
+        cell.userNameLabel.text = tweet.userName()
+        
+        return cell
     }
 }
