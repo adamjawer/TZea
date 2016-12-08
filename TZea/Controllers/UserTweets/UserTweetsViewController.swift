@@ -28,6 +28,9 @@ class UserTweetsViewController: UIViewController {
         // get user info for current user
         header.userNameLabel.text = ""
         header.userIdentifierLabel.text = ""
+        
+        tableView.estimatedRowHeight = 70
+        tableView.rowHeight = UITableViewAutomaticDimension
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -137,13 +140,13 @@ class UserTweetsViewController: UIViewController {
                     return
                 }
                 
-                self.header.userNameLabel.text = json!["name"] as? String ?? ""
+                self.header.userNameLabel.text = json!["name"].stringValue
                 
-                if let imageUrlString = json!["profile_image_url_https"] as? String {
+                if let imageUrlString = json!["profile_image_url_https"].string {
                     self.loadProfileImage(atUrl: imageUrlString)
                 }
 
-                if let bannerUrlString = json!["profile_banner_url"] as? String {
+                if let bannerUrlString = json!["profile_banner_url"].string {
                     self.loadBannerImage(atUrl: bannerUrlString)
                 }
             }
@@ -172,6 +175,23 @@ extension UserTweetsViewController: UITableViewDataSource, UITableViewDelegate {
         let tweet = tweetsDataSource[indexPath.row]
         
         cell.userNameLabel.text = tweet.userName()
+        cell.screenNameLabel.text = tweet.screenName()
+        cell.dateLabel.text = tweet.formattedTweetDate()
+        cell.tweetTextLabel.text = tweet.text()
+        
+        // This must be done in a background thread from the cell's class
+        // but for now...
+
+        if let url = tweet.userProfileUrl() {
+            do {
+                let data = try Data(contentsOf: url)
+                let image = UIImage(data: data)
+                cell.userImageView.image = image
+            } catch let error as NSError {
+                print("Error downloading data: \(error), \(error.userInfo)")
+                cell.userImageView.image = nil
+            }
+        }        
         
         return cell
     }

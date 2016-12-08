@@ -52,7 +52,7 @@ class TwitterHelper {
         return self.getTwitterAccounts().count > 0
     }
     
-    func getUserInfo(forSession session: TWTRSession, completion: @escaping ((Dictionary<String, Any>?, Error?)->())) {
+    func getUserInfo(forSession session: TWTRSession, completion: @escaping ((JSON?, Error?)->())) {
         let userId = session.userID
         let client = TWTRAPIClient(userID: userId)
         let endPoint = "https://api.twitter.com/1.1/users/show.json?user_id=\(userId)"
@@ -73,12 +73,11 @@ class TwitterHelper {
             
             do {
                 if let data = data {
-                    
                     let rawJsonResult = try JSONSerialization.jsonObject(with: data, options: [])
-                    
-                    if let jsonResult = rawJsonResult as? Dictionary<String, Any> {
-                        completion(jsonResult, nil)
-                    }
+
+                    let json = JSON(rawJsonResult)
+      
+                    completion(json, nil)
                 }
             } catch let error as NSError {
                 completion(nil, error)
@@ -118,18 +117,15 @@ class TwitterHelper {
                 if let data = data {
                     let rawJsonResult = try JSONSerialization.jsonObject(with: data, options: [])
                     
-                    if let jsonResult = rawJsonResult as? [Dictionary<String, Any>] {
-                        
-                        var tweets = [TZTweet]()
-                        
-                        for jsonTweet in jsonResult {
-                            tweets.append(TZTweet(withJson: jsonTweet))
-                        }
-                        
-                        completion(tweets, nil)
-                    } else {
-                        completion(nil, TwitterHelperError.invalidJsonError)
+                    let json = JSON(rawJsonResult)
+                    
+                    var tweets = [TZTweet]()
+
+                    for (_, tweetJson):(String, JSON) in json {
+                        tweets.append(TZTweet(withJson: tweetJson))
                     }
+                                        
+                    completion(tweets, nil)
                     
                 }
             } catch let error {
