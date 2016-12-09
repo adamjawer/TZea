@@ -35,11 +35,6 @@ class ImageCache {
         // if we have an image, send it to the completion handler and exit
         if image != nil {
             
-            // Add the image to the cache
-            CriticalSection(lock: self) {
-                cacheOfImages[url] = image
-            }
-            
             // Send the image to the caller
             OperationQueue.main.addOperation {
                 completion(image, nil)
@@ -50,17 +45,20 @@ class ImageCache {
         
         // Image does not exist so let's try to download it
         let downloadTask = getImage(url: url) { (image, error) in
-            guard error == nil else {
+            guard error == nil, image != nil else {
                 completion(nil, error)
                 return
+            }
+            
+            // Add the image to the cache
+            CriticalSection(lock: self) {
+                self.cacheOfImages[url] = image
             }
             
             OperationQueue.main.addOperation {
                 completion(image, nil)
             }
         }
-        
-//        downloadTask.resume()
         
         // give the download task back to the caller in case they want to cancel it
         return downloadTask

@@ -76,73 +76,40 @@ class UserTweetsViewController: UIViewController {
     }
 
     private func loadBannerImage(atUrl urlString: String) {
-//        let queue = OperationQueue()
-        
         if let imageUrl = URL(string: urlString) {
             _ = ImageCache.sharedInstance().getCachedImage(forUrl: imageUrl) { (image, error) in
                 guard error == nil, image != nil else {
+                    self.header.userImageView.image = UIImage(named: "BrokenImage")
                     return
                 }
                 
                 self.header.userBannerImageView.image = image
             }
+        } else {
+            self.header.userBannerImageView.image = UIImage(named: "NoUserImage")
         }
-            
-            
-//            queue.addOperation {
-//                do {
-//                    let data = try Data(contentsOf: imageUrl)
-//                    
-//                    OperationQueue.main.addOperation {
-//                        let image = UIImage(data: data)
-//                        
-//                        OperationQueue.main.addOperation {
-//                            self.header.userBannerImageView.image = image
-//                        }
-//                    }
-//                } catch let error as NSError {
-//                    print("Error downloading data: \(error), \(error.userInfo)")
-//                    OperationQueue.main.addOperation {
-//                        self.header.userBannerImageView.image = nil // replace with generic image
-//                    }
-//                }
-//            }
-//        
     }
     
     private func loadProfileImage(atUrl urlString: String) {
-        let queue = OperationQueue()
         
         if let imageUrl = URL(string: urlString) {
-            
-            queue.addOperation {
-                do {
-                    let data = try Data(contentsOf: imageUrl)
-                    
-                    OperationQueue.main.addOperation {
-                        let image = UIImage(data: data)
-                        
-                        OperationQueue.main.addOperation {
-                            self.header.userImageView.image = image
-                        }
-                    }
-                } catch let error as NSError {
-                    print("Error downloading data: \(error), \(error.userInfo)")
-                    OperationQueue.main.addOperation {
-                        self.header.userImageView.image = nil // replace with generic image
-                    }
+            _ = ImageCache.sharedInstance().getCachedImage(forUrl: imageUrl) { (image, error) in
+                guard error == nil, image != nil else {
+                    self.header.userImageView.image = UIImage(named: "BrokenImage")
+                    return
                 }
+                
+                self.header.userImageView.image = image
             }
+        } else {
+            self.header.userImageView.image = UIImage(named: "NoUserImage")
         }
     }
     
     private func getUserInfo() {
         if let session = TwitterHelper.sharedInstance().currentTwitterSession {
             
-//            header.userIdentifierLabel.text = "@\(session.userName)"
-            
             // get the userInfo
-            
             TwitterHelper.sharedInstance().getTWTRUser(forSession: session) { (user, error) in
                 
                 guard error == nil, user != nil else {
@@ -157,24 +124,17 @@ class UserTweetsViewController: UIViewController {
             
             TwitterHelper.sharedInstance().getUserInfo(forSession: session) { (json, error) in
                 guard error == nil, json != nil else {
-                    print("Error getting image: \(error)")
+                    print("Error getting user info: \(error)")
                     return
                 }
-                
-//                self.header.userNameLabel.text = json!["name"].stringValue
-//                
-//                if let imageUrlString = json!["profile_image_url_https"].string {
-//                    self.loadProfileImage(atUrl: imageUrlString)
-//                }
-//
+
                 if let bannerUrlString = json!["profile_banner_url"].string {
                     self.loadBannerImage(atUrl: bannerUrlString)
                 }
             }
         } else {
             // TODO: - replace with "Generic User Image"
-            header.userImageView.image = nil
-
+            header.userImageView.image = UIImage(named: "BrokenImage")
             header.userNameLabel.text = ""
             header.userIdentifierLabel.text = ""
         }
@@ -195,24 +155,8 @@ extension UserTweetsViewController: UITableViewDataSource, UITableViewDelegate {
         
         let tweet = tweetsDataSource[indexPath.row]
         
-        cell.userNameLabel.text = tweet.userName()
-        cell.screenNameLabel.text = tweet.screenName()
-        cell.dateLabel.text = tweet.formattedTweetDate()
-        cell.tweetTextLabel.text = tweet.text()
+        cell.configure(withTweet: tweet)
         
-        // This must be done in a background thread from the cell's class
-        // but for now...
-
-        if let url = tweet.userProfileUrl() {
-            do {
-                let data = try Data(contentsOf: url)
-                let image = UIImage(data: data)
-                cell.userImageView.image = image
-            } catch let error as NSError {
-                print("Error downloading data: \(error), \(error.userInfo)")
-                cell.userImageView.image = nil
-            }
-        }        
         
         return cell
     }
