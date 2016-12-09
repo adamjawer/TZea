@@ -76,29 +76,38 @@ class UserTweetsViewController: UIViewController {
     }
 
     private func loadBannerImage(atUrl urlString: String) {
-        let queue = OperationQueue()
+//        let queue = OperationQueue()
         
         if let imageUrl = URL(string: urlString) {
-            
-            queue.addOperation {
-                do {
-                    let data = try Data(contentsOf: imageUrl)
-                    
-                    OperationQueue.main.addOperation {
-                        let image = UIImage(data: data)
-                        
-                        OperationQueue.main.addOperation {
-                            self.header.userBannerImageView.image = image
-                        }
-                    }
-                } catch let error as NSError {
-                    print("Error downloading data: \(error), \(error.userInfo)")
-                    OperationQueue.main.addOperation {
-                        self.header.userBannerImageView.image = nil // replace with generic image
-                    }
+            _ = ImageCache.sharedInstance().getCachedImage(forUrl: imageUrl) { (image, error) in
+                guard error == nil, image != nil else {
+                    return
                 }
+                
+                self.header.userBannerImageView.image = image
             }
         }
+            
+            
+//            queue.addOperation {
+//                do {
+//                    let data = try Data(contentsOf: imageUrl)
+//                    
+//                    OperationQueue.main.addOperation {
+//                        let image = UIImage(data: data)
+//                        
+//                        OperationQueue.main.addOperation {
+//                            self.header.userBannerImageView.image = image
+//                        }
+//                    }
+//                } catch let error as NSError {
+//                    print("Error downloading data: \(error), \(error.userInfo)")
+//                    OperationQueue.main.addOperation {
+//                        self.header.userBannerImageView.image = nil // replace with generic image
+//                    }
+//                }
+//            }
+//        
     }
     
     private func loadProfileImage(atUrl urlString: String) {
@@ -130,9 +139,21 @@ class UserTweetsViewController: UIViewController {
     private func getUserInfo() {
         if let session = TwitterHelper.sharedInstance().currentTwitterSession {
             
-            header.userIdentifierLabel.text = "@\(session.userName)"
+//            header.userIdentifierLabel.text = "@\(session.userName)"
             
             // get the userInfo
+            
+            TwitterHelper.sharedInstance().getTWTRUser(forSession: session) { (user, error) in
+                
+                guard error == nil, user != nil else {
+                    print("Error getting user: \(error)")
+                    return
+                }
+                
+                self.header.userIdentifierLabel.text = user!.formattedScreenName
+                self.header.userNameLabel.text = user!.name
+                self.loadProfileImage(atUrl: user!.profileImageLargeURL)
+            }
             
             TwitterHelper.sharedInstance().getUserInfo(forSession: session) { (json, error) in
                 guard error == nil, json != nil else {
@@ -140,12 +161,12 @@ class UserTweetsViewController: UIViewController {
                     return
                 }
                 
-                self.header.userNameLabel.text = json!["name"].stringValue
-                
-                if let imageUrlString = json!["profile_image_url_https"].string {
-                    self.loadProfileImage(atUrl: imageUrlString)
-                }
-
+//                self.header.userNameLabel.text = json!["name"].stringValue
+//                
+//                if let imageUrlString = json!["profile_image_url_https"].string {
+//                    self.loadProfileImage(atUrl: imageUrlString)
+//                }
+//
                 if let bannerUrlString = json!["profile_banner_url"].string {
                     self.loadBannerImage(atUrl: bannerUrlString)
                 }

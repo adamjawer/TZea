@@ -13,11 +13,14 @@ import SwiftyJSON
 
 private var _twitterHelper = TwitterHelper()
 
-typealias TwitterHelperGetImageCallback = (UIImage?, String?, Error?)->()
+typealias TwitterHelperGetImageResult = (UIImage?, Error?)->()
+typealias TwitterHelperGetJSONResult = (JSON?, Error?)->()
+typealias TwitterHelperGetUserResult = (TWTRUser?, Error?)->()
 
 enum TwitterHelperError: Error {
     case imageJsonError
     case invalidJsonError
+    case badImageData
 }
 
 class TwitterHelper {
@@ -52,7 +55,15 @@ class TwitterHelper {
         return self.getTwitterAccounts().count > 0
     }
     
-    func getUserInfo(forSession session: TWTRSession, completion: @escaping ((JSON?, Error?)->())) {
+    func getTWTRUser(forSession session: TWTRSession, completion: @escaping TwitterHelperGetUserResult) {
+        let userId = session.userID
+        let client = TWTRAPIClient(userID: userId)
+        client.loadUser(withID: userId) { (user, error) in
+            completion(user, error)
+        }
+    }
+
+    func getUserInfo(forSession session: TWTRSession, completion: @escaping TwitterHelperGetJSONResult) {
         let userId = session.userID
         let client = TWTRAPIClient(userID: userId)
         let endPoint = "https://api.twitter.com/1.1/users/show.json?user_id=\(userId)"
@@ -86,7 +97,9 @@ class TwitterHelper {
 
     }
     
-    func getTweetsForSessionUser(completion: @escaping (([TZTweet]?, Error?)->())) {
+    typealias TwitterHelperGetTweetResult = ([TZTweet]?, Error?)->()
+    
+    func getTweetsForSessionUser(completion: @escaping TwitterHelperGetTweetResult) {
         let userId = currentTwitterSession?.userID
         let client = TWTRAPIClient(userID: userId)
         
@@ -134,6 +147,7 @@ class TwitterHelper {
             
         }
     }
+
 }
 
 
