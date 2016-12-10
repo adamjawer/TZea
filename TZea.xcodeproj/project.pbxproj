@@ -10,6 +10,11 @@
 		138766AD0EF88CAFBBE8234E /* Pods_TZea.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51747FEB48E20AF0EA0D8695 /* Pods_TZea.framework */; };
 		4812651A1DFBAF3700A9FFF2 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481265191DFBAF3700A9FFF2 /* CoreDataStack.swift */; };
 		4812651E1DFBAF7A00A9FFF2 /* TZea.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4812651C1DFBAF7A00A9FFF2 /* TZea.xcdatamodeld */; };
+		481265251DFBB1D700A9FFF2 /* CDTweet+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481265231DFBB1D700A9FFF2 /* CDTweet+CoreDataClass.swift */; };
+		481265261DFBB1D700A9FFF2 /* CDTweet+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481265241DFBB1D700A9FFF2 /* CDTweet+CoreDataProperties.swift */; };
+		481265291DFC468E00A9FFF2 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481265281DFC468E00A9FFF2 /* LaunchViewController.swift */; };
+		4812652D1DFC48A600A9FFF2 /* UserTweetsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4812652B1DFC48A600A9FFF2 /* UserTweetsHeaderView.swift */; };
+		4812652E1DFC48A600A9FFF2 /* UserTweetsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4812652C1DFC48A600A9FFF2 /* UserTweetsHeaderView.xib */; };
 		48635B271DF76043009B813E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48635B261DF76043009B813E /* AppDelegate.swift */; };
 		48635B2C1DF76043009B813E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48635B2A1DF76043009B813E /* Main.storyboard */; };
 		48635B2E1DF76043009B813E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48635B2D1DF76043009B813E /* Assets.xcassets */; };
@@ -24,7 +29,6 @@
 		48D50A8F1DF8FED6003A496C /* UserTweetsTweetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D50A8E1DF8FED6003A496C /* UserTweetsTweetCell.swift */; };
 		48D50A911DF903AD003A496C /* TZTweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D50A901DF903AD003A496C /* TZTweet.swift */; };
 		48F1E3071DF7ACBA00ECBB91 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48F1E3061DF7ACBA00ECBB91 /* Accounts.framework */; };
-		48F1E30E1DF7B59B00ECBB91 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F1E30D1DF7B59B00ECBB91 /* ViewController.swift */; };
 		48F1E3121DF7B60100ECBB91 /* TwitterHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F1E3111DF7B60100ECBB91 /* TwitterHelper.swift */; };
 		48F1E3151DF7BB1700ECBB91 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F1E3141DF7BB1700ECBB91 /* GradientView.swift */; };
 		48F1E3181DF7BB5D00ECBB91 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F1E3171DF7BB5D00ECBB91 /* UIColor+Extensions.swift */; };
@@ -52,6 +56,11 @@
 		16AFE3D314A4E3896C484B00 /* Pods-TZea.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TZea.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TZea/Pods-TZea.debug.xcconfig"; sourceTree = "<group>"; };
 		481265191DFBAF3700A9FFF2 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		4812651D1DFBAF7A00A9FFF2 /* TZea.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TZea.xcdatamodel; sourceTree = "<group>"; };
+		481265231DFBB1D700A9FFF2 /* CDTweet+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CDTweet+CoreDataClass.swift"; sourceTree = "<group>"; };
+		481265241DFBB1D700A9FFF2 /* CDTweet+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CDTweet+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		481265281DFC468E00A9FFF2 /* LaunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
+		4812652B1DFC48A600A9FFF2 /* UserTweetsHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTweetsHeaderView.swift; sourceTree = "<group>"; };
+		4812652C1DFC48A600A9FFF2 /* UserTweetsHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserTweetsHeaderView.xib; sourceTree = "<group>"; };
 		48635B231DF76043009B813E /* TZea.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TZea.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48635B261DF76043009B813E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		48635B2B1DF76043009B813E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -73,7 +82,6 @@
 		48D50A8E1DF8FED6003A496C /* UserTweetsTweetCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTweetsTweetCell.swift; sourceTree = "<group>"; };
 		48D50A901DF903AD003A496C /* TZTweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TZTweet.swift; sourceTree = "<group>"; };
 		48F1E3061DF7ACBA00ECBB91 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
-		48F1E30D1DF7B59B00ECBB91 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		48F1E3111DF7B60100ECBB91 /* TwitterHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterHelper.swift; sourceTree = "<group>"; };
 		48F1E3141DF7BB1700ECBB91 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		48F1E3171DF7BB5D00ECBB91 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
@@ -120,9 +128,28 @@
 		4812651B1DFBAF4800A9FFF2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				481265231DFBB1D700A9FFF2 /* CDTweet+CoreDataClass.swift */,
+				481265241DFBB1D700A9FFF2 /* CDTweet+CoreDataProperties.swift */,
 				4812651C1DFBAF7A00A9FFF2 /* TZea.xcdatamodeld */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		481265271DFC465E00A9FFF2 /* LaunchViewController */ = {
+			isa = PBXGroup;
+			children = (
+				481265281DFC468E00A9FFF2 /* LaunchViewController.swift */,
+			);
+			path = LaunchViewController;
+			sourceTree = "<group>";
+		};
+		4812652A1DFC487700A9FFF2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4812652B1DFC48A600A9FFF2 /* UserTweetsHeaderView.swift */,
+				4812652C1DFC48A600A9FFF2 /* UserTweetsHeaderView.xib */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 		48635B1A1DF76043009B813E = {
@@ -260,19 +287,11 @@
 		48F1E30B1DF7B55200ECBB91 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				481265271DFC465E00A9FFF2 /* LaunchViewController */,
 				48D50A851DF8AE3E003A496C /* Compose */,
 				48F4EFD41DF84795008BC6B4 /* UserTweets */,
-				48F1E30C1DF7B58C00ECBB91 /* ViewController */,
 			);
 			path = Controllers;
-			sourceTree = "<group>";
-		};
-		48F1E30C1DF7B58C00ECBB91 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				48F1E30D1DF7B59B00ECBB91 /* ViewController.swift */,
-			);
-			path = ViewController;
 			sourceTree = "<group>";
 		};
 		48F1E30F1DF7B5B500ECBB91 /* Library */ = {
@@ -315,6 +334,7 @@
 		48F4EFD41DF84795008BC6B4 /* UserTweets */ = {
 			isa = PBXGroup;
 			children = (
+				4812652A1DFC487700A9FFF2 /* Views */,
 				48D50A8D1DF8FEA8003A496C /* Cells */,
 				48F4EFD51DF847BC008BC6B4 /* UserTweetsViewController.swift */,
 			);
@@ -450,6 +470,7 @@
 				48635B311DF76043009B813E /* LaunchScreen.storyboard in Resources */,
 				48635B2E1DF76043009B813E /* Assets.xcassets in Resources */,
 				48635B5D1DF767A7009B813E /* Podfile in Resources */,
+				4812652E1DFC48A600A9FFF2 /* UserTweetsHeaderView.xib in Resources */,
 				48635B2C1DF76043009B813E /* Main.storyboard in Resources */,
 				48D50A8C1DF8B0D7003A496C /* ComposeToolbar.xib in Resources */,
 			);
@@ -537,19 +558,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				481265251DFBB1D700A9FFF2 /* CDTweet+CoreDataClass.swift in Sources */,
 				4812651E1DFBAF7A00A9FFF2 /* TZea.xcdatamodeld in Sources */,
 				48D01BDE1DFAF15F002C3291 /* ImageCache.swift in Sources */,
 				48D50A8A1DF8B0CB003A496C /* ComposeToolbar.swift in Sources */,
 				48D50A911DF903AD003A496C /* TZTweet.swift in Sources */,
 				4812651A1DFBAF3700A9FFF2 /* CoreDataStack.swift in Sources */,
-				48F1E30E1DF7B59B00ECBB91 /* ViewController.swift in Sources */,
 				48F1E3181DF7BB5D00ECBB91 /* UIColor+Extensions.swift in Sources */,
 				48635B271DF76043009B813E /* AppDelegate.swift in Sources */,
 				48F1E3151DF7BB1700ECBB91 /* GradientView.swift in Sources */,
 				48F1E3121DF7B60100ECBB91 /* TwitterHelper.swift in Sources */,
 				48F4EFD61DF847BC008BC6B4 /* UserTweetsViewController.swift in Sources */,
+				481265261DFBB1D700A9FFF2 /* CDTweet+CoreDataProperties.swift in Sources */,
 				48D50A871DF8AE54003A496C /* ComposeViewController.swift in Sources */,
 				48D50A8F1DF8FED6003A496C /* UserTweetsTweetCell.swift in Sources */,
+				481265291DFC468E00A9FFF2 /* LaunchViewController.swift in Sources */,
+				4812652D1DFC48A600A9FFF2 /* UserTweetsHeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -48,4 +48,14 @@ class CoreDataStack: NSObject {
         return managedObjectContext
     }()
 
+    func saveMainContext() {
+        if managedObjectContext.hasChanges {
+            do {
+                try managedObjectContext.save()
+            } catch {
+                fatalError("Error saving main managed object context! \(error)")
+            }
+        }
+    }
+    
 }

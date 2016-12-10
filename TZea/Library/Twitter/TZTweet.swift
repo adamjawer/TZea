@@ -16,6 +16,14 @@ struct TZTweet {
         json = withJson
     }
     
+    func userId() -> String? {
+        return json["user"]["id"].string
+    }
+    
+    func tweetId() -> Int64 {
+        return json["id"].int64Value
+    }
+    
     func userName() -> String? {
        return json["user"]["name"].string
     }
@@ -25,18 +33,25 @@ struct TZTweet {
     }
     
     func createdDate() -> Date? {
-        return json["created_at"].date as Date?
+//        Sat Oct 25 14:05:58 +0000 2014
+        if let dateString = json["created_at"].string {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "EEE MMM dd HH:mm:ss Z yyyy"
+            
+            return formatter.date(from: dateString)
+        } else {
+            return nil
+        }
     }
     
     func formattedTweetDate() -> String? {
-        return "m/d/yy"
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateStyle = .short
-//        if let date = createdDate() {
-//            return dateFormatter.string(from: date)
-//        } else {
-//            return nil
-//        }
+        if let date = createdDate() {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateStyle = .short
+            return dateFormatter.string(from: date)
+        } else {
+            return "xxxxxx"
+        }
     }
     
     func text() -> String? {
@@ -70,3 +85,4 @@ extension JSON {
         return fmt
     }()
 }
+

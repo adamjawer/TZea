@@ -1,15 +1,15 @@
 //
-//  ViewController.swift
+//  LaunchViewController.swift
 //  TZea
 //
-//  Created by Adam Jawer on 12/6/16.
+//  Created by Adam Jawer on 12/10/16.
 //  Copyright © 2016 Adam Jawer. All rights reserved.
 //
 
 import UIKit
 import TwitterKit
 
-class ViewController: UIViewController {
+class LaunchViewController: UIViewController {
 
     @IBAction func loginWithTwitter(_ sender: UIButton) {
         loginWith(method: .all)
@@ -28,11 +28,11 @@ class ViewController: UIViewController {
             }
         }
     }
-
+    
     func loggedIn(withSession session: TWTRSession) {
         // set the current session
         TwitterHelper.sharedInstance().currentTwitterSession = session
-
+        
         if presentingViewController != nil {
             dismiss(animated: true, completion: nil)
         } else {
@@ -43,4 +43,3 @@ class ViewController: UIViewController {
     }
 
 }
-

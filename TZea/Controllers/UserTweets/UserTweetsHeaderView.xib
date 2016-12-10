@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="Awl-NZ-mqp" customClass="UserTweetsHeaderView" customModule="TZea" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="106"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bGk-Ql-Is8">
+                    <rect key="frame" x="20" y="39" width="347" height="21"/>
+                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@twitteridentifier" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T1J-oH-Ml1">
+                    <rect key="frame" x="20" y="68" width="347" height="18"/>
+                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="T1J-oH-Ml1" firstAttribute="leading" secondItem="Awl-NZ-mqp" secondAttribute="leading" constant="20" id="Ff3-yq-bRE"/>
+                <constraint firstAttribute="trailing" secondItem="T1J-oH-Ml1" secondAttribute="trailing" constant="8" id="MEk-fj-PI4"/>
+                <constraint firstAttribute="bottom" secondItem="T1J-oH-Ml1" secondAttribute="bottom" constant="20" id="O3w-5G-OWO"/>
+                <constraint firstItem="T1J-oH-Ml1" firstAttribute="top" secondItem="bGk-Ql-Is8" secondAttribute="bottom" constant="8" id="R6x-Di-cox"/>
+                <constraint firstAttribute="trailing" secondItem="bGk-Ql-Is8" secondAttribute="trailing" constant="8" id="ozX-MI-UIc"/>
+                <constraint firstItem="bGk-Ql-Is8" firstAttribute="leading" secondItem="Awl-NZ-mqp" secondAttribute="leading" constant="20" id="zJD-Jy-J8b"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="screenNameLabel" destination="T1J-oH-Ml1" id="pis-xm-tiN"/>
+                <outlet property="userNameLabel" destination="bGk-Ql-Is8" id="xUy-hf-80l"/>
+            </connections>
+        </view>
+    </objects>
+</document>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11542" systemVersion="16B2657" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="CDTweet" representedClassName="CDTweet" syncable="YES" codeGenerationType="class">
+    <entity name="CDTweet" representedClassName="CDTweet" syncable="YES">
         <attribute name="createdDate" attributeType="Date" usesScalarValueType="NO" indexed="YES" syncable="YES"/>
         <attribute name="json" attributeType="String" syncable="YES"/>
-        <attribute name="tweetId" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="tweetId" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" indexed="YES" syncable="YES"/>
         <attribute name="userId" attributeType="String" indexed="YES" syncable="YES"/>
     </entity>
     <elements>
