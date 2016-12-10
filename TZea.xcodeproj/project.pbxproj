@@ -62,7 +62,6 @@
 		48635B481DF76043009B813E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		48635B5C1DF767A7009B813E /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		4894696C1DF83DDE00D5CD0E /* TZea.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TZea.entitlements; sourceTree = "<group>"; };
-		4894696D1DF83EF900D5CD0E /* TwitterKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TwitterKitResources.bundle; path = Pods/TwitterKit/iOS/TwitterKit.framework/Versions/A/Resources/TwitterKitResources.bundle; sourceTree = "<group>"; };
 		48D01BDD1DFAF15F002C3291 /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		48D50A861DF8AE54003A496C /* ComposeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
 		48D50A891DF8B0CB003A496C /* ComposeToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeToolbar.swift; sourceTree = "<group>"; };
@@ -109,7 +108,6 @@
 		48635B1A1DF76043009B813E = {
 			isa = PBXGroup;
 			children = (
-				4894696D1DF83EF900D5CD0E /* TwitterKitResources.bundle */,
 				48635B5C1DF767A7009B813E /* Podfile */,
 				48635B251DF76043009B813E /* TZea */,
 				48635B3A1DF76043009B813E /* TZeaTests */,
