@@ -13,4 +13,11 @@ class UserTweetsHeaderView: UIView {
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var screenNameLabel: UILabel!
 
+    @IBAction func configButtonPressed(_ sender: UIButton) {
+        if let didPressConfigButton = didPressConfigButton {
+            didPressConfigButton()
+        }
+    }
+    
+    var didPressConfigButton: (()->())?
 }
