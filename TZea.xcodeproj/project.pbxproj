@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		138766AD0EF88CAFBBE8234E /* Pods_TZea.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51747FEB48E20AF0EA0D8695 /* Pods_TZea.framework */; };
+		4812651A1DFBAF3700A9FFF2 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481265191DFBAF3700A9FFF2 /* CoreDataStack.swift */; };
+		4812651E1DFBAF7A00A9FFF2 /* TZea.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4812651C1DFBAF7A00A9FFF2 /* TZea.xcdatamodeld */; };
 		48635B271DF76043009B813E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48635B261DF76043009B813E /* AppDelegate.swift */; };
 		48635B2C1DF76043009B813E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48635B2A1DF76043009B813E /* Main.storyboard */; };
 		48635B2E1DF76043009B813E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48635B2D1DF76043009B813E /* Assets.xcassets */; };
@@ -48,6 +50,8 @@
 
 /* Begin PBXFileReference section */
 		16AFE3D314A4E3896C484B00 /* Pods-TZea.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TZea.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TZea/Pods-TZea.debug.xcconfig"; sourceTree = "<group>"; };
+		481265191DFBAF3700A9FFF2 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		4812651D1DFBAF7A00A9FFF2 /* TZea.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TZea.xcdatamodel; sourceTree = "<group>"; };
 		48635B231DF76043009B813E /* TZea.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TZea.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48635B261DF76043009B813E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		48635B2B1DF76043009B813E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -105,6 +109,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		481265181DFBAF0E00A9FFF2 /* CoreDataStack */ = {
+			isa = PBXGroup;
+			children = (
+				481265191DFBAF3700A9FFF2 /* CoreDataStack.swift */,
+			);
+			path = CoreDataStack;
+			sourceTree = "<group>";
+		};
+		4812651B1DFBAF4800A9FFF2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4812651C1DFBAF7A00A9FFF2 /* TZea.xcdatamodeld */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		48635B1A1DF76043009B813E = {
 			isa = PBXGroup;
 			children = (
@@ -131,7 +151,7 @@
 		48635B251DF76043009B813E /* TZea */ = {
 			isa = PBXGroup;
 			children = (
-				4894696C1DF83DDE00D5CD0E /* TZea.entitlements */,
+				4812651B1DFBAF4800A9FFF2 /* Model */,
 				48F1E30F1DF7B5B500ECBB91 /* Library */,
 				48F1E30B1DF7B55200ECBB91 /* Controllers */,
 				48F1E3091DF7B53200ECBB91 /* UI */,
@@ -172,6 +192,7 @@
 		48635B5F1DF7688F009B813E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4894696C1DF83DDE00D5CD0E /* TZea.entitlements */,
 				48635B2F1DF76043009B813E /* LaunchScreen.storyboard */,
 				48635B321DF76043009B813E /* Info.plist */,
 			);
@@ -257,6 +278,7 @@
 		48F1E30F1DF7B5B500ECBB91 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				481265181DFBAF0E00A9FFF2 /* CoreDataStack */,
 				48D01BDC1DFAF13F002C3291 /* ImageCache */,
 				48F1E3161DF7BB4600ECBB91 /* Extensions */,
 				48F1E3131DF7BAFB00ECBB91 /* GradientView */,
@@ -515,9 +537,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4812651E1DFBAF7A00A9FFF2 /* TZea.xcdatamodeld in Sources */,
 				48D01BDE1DFAF15F002C3291 /* ImageCache.swift in Sources */,
 				48D50A8A1DF8B0CB003A496C /* ComposeToolbar.swift in Sources */,
 				48D50A911DF903AD003A496C /* TZTweet.swift in Sources */,
+				4812651A1DFBAF3700A9FFF2 /* CoreDataStack.swift in Sources */,
 				48F1E30E1DF7B59B00ECBB91 /* ViewController.swift in Sources */,
 				48F1E3181DF7BB5D00ECBB91 /* UIColor+Extensions.swift in Sources */,
 				48635B271DF76043009B813E /* AppDelegate.swift in Sources */,
@@ -800,6 +824,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		4812651C1DFBAF7A00A9FFF2 /* TZea.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				4812651D1DFBAF7A00A9FFF2 /* TZea.xcdatamodel */,
+			);
+			currentVersion = 4812651D1DFBAF7A00A9FFF2 /* TZea.xcdatamodel */;
+			path = TZea.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 48635B1B1DF76043009B813E /* Project object */;
 }
