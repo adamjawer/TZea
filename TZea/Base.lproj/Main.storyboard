@@ -26,17 +26,17 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="grG-fw-oec" customClass="GradientView" customModule="TZea" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="249" verticalCompressionResistancePriority="249" image="IzeaLogo" translatesAutoresizingMaskIntoConstraints="NO" id="Qc4-Rz-ezJ">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="249" verticalCompressionResistancePriority="249" image="TZeaLogoFullFrame" translatesAutoresizingMaskIntoConstraints="NO" id="Qc4-Rz-ezJ">
                                 <rect key="frame" x="87" y="8" width="200" height="180"/>
                                 <constraints>
                                     <constraint firstAttribute="height" priority="250" constant="180" id="OvF-Ub-rTQ"/>
                                     <constraint firstAttribute="width" secondItem="Qc4-Rz-ezJ" secondAttribute="height" multiplier="10:9" id="tuh-fb-EaL"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Making Twitter IZEA" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xx3-Kj-CKR">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Making IZEA Twitter" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xx3-Kj-CKR">
                                 <rect key="frame" x="85" y="196" width="206" height="27"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
-                                <color key="textColor" red="0.57647058823529407" green="0.16470588235294117" blue="0.46666666666666667" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.43967552784761765" green="0.17259276286862549" blue="0.36909847365418214" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TCz-Vd-Qyh">
@@ -96,6 +96,10 @@
                             <constraint firstItem="qXg-bP-q8b" firstAttribute="trailing" secondItem="TCz-Vd-Qyh" secondAttribute="trailing" id="wHv-Iu-a1Z"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="gradientView" destination="grG-fw-oec" id="joQ-dv-6jb"/>
+                        <outlet property="tagLabel" destination="xx3-Kj-CKR" id="2Gi-wY-EE3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -178,11 +182,6 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="93" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="U94-ZG-ujw">
                                 <rect key="frame" x="0.0" y="37" width="375" height="630"/>
                                 <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
-                                <webView key="tableFooterView" contentMode="scaleToFill" id="o9D-g5-0UO">
-                                    <rect key="frame" x="0.0" y="167" width="375" height="44"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </webView>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TweetCellId" rowHeight="93" id="dSH-z0-Ygk" customClass="UserTweetsTweetCell" customModule="TZea" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="56" width="375" height="93"/>
@@ -372,7 +371,7 @@
     <resources>
         <image name="CloseIcon" width="15" height="15"/>
         <image name="ComposeIcon" width="30" height="30"/>
-        <image name="IzeaLogo" width="200" height="174"/>
+        <image name="TZeaLogoFullFrame" width="200" height="174"/>
         <image name="TwitterIcoLogoWhite" width="16" height="13"/>
         <image name="WhitePlusButton16x16" width="16" height="16"/>
     </resources>

@@ -15,6 +15,7 @@ fileprivate struct Constants {
     static let profileOffsetMax: CGFloat = 56
     static let profileScaledMin: CGFloat = 0.8
     static let bannerTitleOffsetMax: CGFloat = -50
+    static let headerTextAlphaOffsetMax: CGFloat = 112
 }
 
 class UserTweetsViewController: UIViewController {
@@ -255,6 +256,8 @@ extension UserTweetsViewController: UIScrollViewDelegate {
             bannerView.transform = CGAffineTransform.identity
             profileView.transform = CGAffineTransform.identity
             bannerTitleContainer.transform = CGAffineTransform.identity
+            headerView.userNameLabel.alpha = 1
+            headerView.screenNameLabel.alpha = 1
         } else {
             let bannerOffset = min(offsetY, Constants.bannerOffsetMax)
             
@@ -267,6 +270,12 @@ extension UserTweetsViewController: UIScrollViewDelegate {
             let scalePercent = max(1 - percent * (1 - Constants.profileScaledMin), Constants.profileScaledMin)
             
             profileView.transform = profileView.transform.scaledBy(x: scalePercent, y: scalePercent)
+            
+            print(offsetY)
+            let headerTextAlpha = 1 - min(offsetY, Constants.headerTextAlphaOffsetMax) / Constants.headerTextAlphaOffsetMax
+            headerView.userNameLabel.alpha = headerTextAlpha
+            headerView.screenNameLabel.alpha = headerTextAlpha
+            
             
             // move other text into position in the header
             if offsetY > Constants.profileOffsetMax {

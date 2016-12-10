@@ -11,12 +11,19 @@ import TwitterKit
 
 class LaunchViewController: UIViewController {
 
+    @IBOutlet weak var tagLabel: UILabel!
+    @IBOutlet weak var gradientView: GradientView!
+    
     @IBAction func loginWithTwitter(_ sender: UIButton) {
         loginWith(method: .all)
     }
     
     @IBAction func addAcount(_ sender: UIButton) {
         loginWith(method: .webBased)
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        return true
     }
     
     func loginWith(method: TWTRLoginMethod) {
