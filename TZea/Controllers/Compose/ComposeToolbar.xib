@@ -46,6 +46,9 @@
                                 <state key="normal" title="Tweet">
                                     <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="tweetButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="USe-Ro-GOh"/>
+                                </connections>
                             </button>
                         </barButtonItem>
                     </items>

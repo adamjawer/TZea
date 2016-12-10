@@ -69,6 +69,20 @@ class UserTweetsViewController: UIViewController {
         return true
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ComposeTweet" {
+            if let composeTweetController = segue.destination as? ComposeViewController {
+                
+                composeTweetController.didClose = { (didPostTweet) in
+                    if didPostTweet {
+                        self.refreshTweets(moveToTop: true)
+                    }
+                    self.dismiss(animated: true)
+                }
+            }
+        }
+    }
+    
     // MARK: - Events
     
     func configButtonPressed() {
@@ -129,6 +143,12 @@ class UserTweetsViewController: UIViewController {
             self.tweetsDataSource = tweets!
             self.tableView.reloadData()
         }
+    }
+
+    // move to top means if we posted something new, we want to display it at the top
+    func refreshTweets(moveToTop: Bool) {
+        
+        loadTweets()
     }
     
     private func loadBannerImage(atUrl urlString: String) {

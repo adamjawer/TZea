@@ -15,11 +15,17 @@ class ComposeViewController: UIViewController {
     
     var composeToolbar: ComposeToolbar!
     
+    var didClose:((Bool)->())?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         composeToolbar = Bundle.main.loadNibNamed("ComposeToolbar", owner: nil, options: nil)?.first as! ComposeToolbar!
+        composeToolbar.didPressSend = { (_) in
+            self.postPressed()
+        }
+        
         textView.inputAccessoryView = composeToolbar
         composeToolbar.setTweetButton(enabled: false)
     }
@@ -30,9 +36,39 @@ class ComposeViewController: UIViewController {
         textView.becomeFirstResponder()
     }
     
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
+    private func statusText() -> String {
+        return textView.text
+    }
+    
     @IBAction func closeButtonPressed(_ sender: UIButton) {
-        textView.resignFirstResponder()
-        dismiss(animated: true, completion: nil)
+        if let didClose = self.didClose {
+            self.textView.resignFirstResponder()
+            didClose(false)
+        }
+    }
+    
+    func postPressed() {
+        // attempt to POST the tweet
+        TwitterHelper.sharedInstance().post(statusText: statusText()) { (json, error) in
+            
+            guard error == nil, json != nil else {
+                let alertController = UIAlertController(title: "Error posting tweet",
+                                                        message: "\(error?.localizedDescription) ?? nil",
+                                                        preferredStyle: .alert)
+                self.present(alertController, animated: true)
+                return
+            }
+        
+            self.textView.resignFirstResponder()
+            
+            if let didClose = self.didClose {
+                didClose(true)
+            }
+        }
     }
 
 }

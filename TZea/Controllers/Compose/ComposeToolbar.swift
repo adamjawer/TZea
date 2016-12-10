@@ -13,6 +13,8 @@ class ComposeToolbar: UIView {
     @IBOutlet weak var charactersRemainingLabel: UILabel!
     @IBOutlet weak var tweetButton: UIButton!
     
+    var didPressSend: ((_ sender: ComposeToolbar)->())!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -30,4 +32,7 @@ class ComposeToolbar: UIView {
         tweetButton.setTitleColor(color, for: .normal)
     }
 
+    @IBAction func tweetButtonPressed(_ sender: UIButton) {
+        didPressSend(self)
+    }
 }
