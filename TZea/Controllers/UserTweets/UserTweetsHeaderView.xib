@@ -16,13 +16,13 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bGk-Ql-Is8">
-                    <rect key="frame" x="20" y="39" width="347" height="21"/>
+                    <rect key="frame" x="20" y="53" width="347" height="21"/>
                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@twitteridentifier" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T1J-oH-Ml1">
-                    <rect key="frame" x="20" y="68" width="347" height="18"/>
+                    <rect key="frame" x="20" y="74" width="347" height="18"/>
                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -40,8 +40,8 @@
                 <constraint firstItem="pgK-cF-gJ6" firstAttribute="top" secondItem="Awl-NZ-mqp" secondAttribute="top" constant="9" id="8Fg-1Y-aYX"/>
                 <constraint firstItem="T1J-oH-Ml1" firstAttribute="leading" secondItem="Awl-NZ-mqp" secondAttribute="leading" constant="20" id="Ff3-yq-bRE"/>
                 <constraint firstAttribute="trailing" secondItem="T1J-oH-Ml1" secondAttribute="trailing" constant="8" id="MEk-fj-PI4"/>
-                <constraint firstAttribute="bottom" secondItem="T1J-oH-Ml1" secondAttribute="bottom" constant="20" id="O3w-5G-OWO"/>
-                <constraint firstItem="T1J-oH-Ml1" firstAttribute="top" secondItem="bGk-Ql-Is8" secondAttribute="bottom" constant="8" id="R6x-Di-cox"/>
+                <constraint firstAttribute="bottom" secondItem="T1J-oH-Ml1" secondAttribute="bottom" constant="14" id="O3w-5G-OWO"/>
+                <constraint firstItem="T1J-oH-Ml1" firstAttribute="top" secondItem="bGk-Ql-Is8" secondAttribute="bottom" id="R6x-Di-cox"/>
                 <constraint firstItem="pgK-cF-gJ6" firstAttribute="centerX" secondItem="Awl-NZ-mqp" secondAttribute="centerX" id="oHl-Om-5gP"/>
                 <constraint firstAttribute="trailing" secondItem="bGk-Ql-Is8" secondAttribute="trailing" constant="8" id="ozX-MI-UIc"/>
                 <constraint firstItem="bGk-Ql-Is8" firstAttribute="leading" secondItem="Awl-NZ-mqp" secondAttribute="leading" constant="20" id="zJD-Jy-J8b"/>

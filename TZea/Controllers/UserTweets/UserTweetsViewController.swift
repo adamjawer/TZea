@@ -131,7 +131,7 @@ class UserTweetsViewController: UIViewController {
              self.coreDataStack.saveMainContext()
              */
             
-            let tweetCount = self.tweetsDataSource.count
+            let tweetCount = tweets!.count
             
             let pluralS: String
             if tweetCount == 1 {

@@ -261,7 +261,7 @@
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vQs-IC-Rod">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="93"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Sunset" translatesAutoresizingMaskIntoConstraints="NO" id="EDc-Va-3ot">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EDc-Va-3ot">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="93"/>
                                     </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zf8-R1-mJw" userLabel="BannerTitleContainer">
@@ -307,7 +307,7 @@
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vR3-YV-OaO">
                                 <rect key="frame" x="20" y="58" width="71" height="71"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="AdamDevJawer" translatesAutoresizingMaskIntoConstraints="NO" id="YJd-Dg-g8y">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YJd-Dg-g8y">
                                         <rect key="frame" x="4" y="4" width="63" height="63"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <userDefinedRuntimeAttributes>
@@ -370,11 +370,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="AdamDevJawer" width="684" height="661"/>
         <image name="CloseIcon" width="15" height="15"/>
         <image name="ComposeIcon" width="30" height="30"/>
         <image name="IzeaLogo" width="200" height="174"/>
-        <image name="Sunset" width="1280" height="720"/>
         <image name="TwitterIcoLogoWhite" width="16" height="13"/>
         <image name="WhitePlusButton16x16" width="16" height="16"/>
     </resources>
