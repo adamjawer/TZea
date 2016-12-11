@@ -111,7 +111,7 @@ class UserTweetsViewController: UIViewController {
     }
     
     func loadTweets() {
-        TwitterHelper.sharedInstance().getTweetsForSessionUser { (tweets, error) in
+        TwitterHelper.sharedInstance().getUserTweets() { (tweets, error) in
             guard error == nil, tweets != nil else {
                 print("Error getting tweets: \(error)")
                 return
@@ -220,7 +220,7 @@ class UserTweetsViewController: UIViewController {
                 self.loadProfileImage(atUrl: user!.profileImageLargeURL)
             }
             
-            TwitterHelper.sharedInstance().getUserInfo(forSession: session) { (json, error) in
+            TwitterHelper.sharedInstance().getSessionUserInfo { (json, error) in
                 guard error == nil, json != nil else {
                     print("Error getting user info: \(error)")
                     return
@@ -230,6 +230,7 @@ class UserTweetsViewController: UIViewController {
                     self.loadBannerImage(atUrl: bannerUrlString)
                 }
             }
+    
         } else {
             profileImageView.image = UIImage(named: "BrokenImage")
             headerView.userNameLabel.text = ""

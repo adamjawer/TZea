@@ -14,14 +14,15 @@ import SwiftyJSON
 private var _twitterHelper = TwitterHelper()
 
 typealias TwitterHelperGetImageResult = (UIImage?, Error?)->()
-typealias TwitterHelperGetJSONResult = (JSON?, Error?)->()
+typealias TwitterHelperJSONResult = (JSON?, Error?)->()
 typealias TwitterHelperGetUserResult = (TWTRUser?, Error?)->()
-typealias TwitterHelperPostTweetResult = (JSON?, Error?)->()
+
 
 enum TwitterHelperError: Error {
     case imageJsonError
     case invalidJsonError
     case badImageData
+    case noData(Error?)
 }
 
 class TwitterHelper {
@@ -63,39 +64,51 @@ class TwitterHelper {
             completion(user, error)
         }
     }
+    
+    struct TwitterEndpoint {
+        static let getUserTimeline = "https://api.twitter.com/1.1/statuses/user_timeline.json"
+        static let postStatusUpdate = "https://api.twitter.com/1.1/statuses/update.json"
+        static let getUser = "https://api.twitter.com/1.1/users/show.json"
+    }
 
-    func getUserInfo(forSession session: TWTRSession, completion: @escaping TwitterHelperGetJSONResult) {
-        let userId = session.userID
-        let client = TWTRAPIClient(userID: userId)
-        let endPoint = "https://api.twitter.com/1.1/users/show.json?user_id=\(userId)"
+    func callTwitterApi(httpMethod: String,
+                        endPoint: String,
+                        parameters: Dictionary<String, String>,
+                        completion: @escaping TwitterHelperJSONResult) {
         
+        let client = TWTRAPIClient(userID: currentTwitterSession!.userID)
         var error: NSError?
-        
-        let request = client.urlRequest(withMethod: "GET",
+        let request = client.urlRequest(withMethod: httpMethod,
                                         url: endPoint,
-                                        parameters: nil,
+                                        parameters: parameters,
                                         error: &error)
         
         client.sendTwitterRequest(request) { (response, data, error) in
-            
             guard data != nil else {
-                print("Error with urlRequest: \(error)")
+                completion(nil, TwitterHelperError.noData(error))
                 return
             }
-            
+         
             do {
                 if let data = data {
                     let rawJsonResult = try JSONSerialization.jsonObject(with: data, options: [])
-
+                    
                     let json = JSON(rawJsonResult)
-      
+                    
                     completion(json, nil)
                 }
             } catch let error as NSError {
                 completion(nil, error)
             }
         }
-
+    }
+    
+    
+    func getSessionUserInfo(completion: @escaping TwitterHelperJSONResult) {
+        callTwitterApi(httpMethod: "GET",
+                       endPoint: TwitterEndpoint.getUser,
+                       parameters: ["user_id": currentTwitterSession!.userID],
+                       completion: completion)
     }
     
     typealias TwitterHelperGetTweetResult = ([TZTweet]?, Error?)->()
@@ -105,61 +118,37 @@ class TwitterHelper {
         return TWTRAPIClient(userID: userId)
     }
     
-    func getTweetsForSessionUser(completion: @escaping TwitterHelperGetTweetResult) {
-        let client = getClient(forSession: currentTwitterSession!)
-        var error: NSError?
-        let endPoint = "https://api.twitter.com/1.1/statuses/user_timeline.json"
-        var parameters = Dictionary<String, String>()
-        
-        parameters["user_id"] = client.userID
-//        parameters["count"] = "20"
-//        parameters["exclude_replies"] = "true"
-//        parameters["trim_user"] = "true"
-        
-        let request = client.urlRequest(withMethod: "GET",
-                                        url: endPoint,
-                                        parameters: parameters,
-                                        error: &error)
-        
-        client.sendTwitterRequest(request) { (response, data, error) in
-            guard data != nil else {
-                completion(nil, error)
-                return
-            }
-            
-            do {
-                if let data = data {
-                    let rawJsonResult = try JSONSerialization.jsonObject(with: data, options: [])
-                    
-                    let json = JSON(rawJsonResult)
-                    
-                    var tweets = [TZTweet]()
-
-                    for (_, tweetJson):(String, JSON) in json {
-                        tweets.append(TZTweet(withJson: tweetJson))
-                    }
+    func getUserTweets(completion: @escaping TwitterHelperGetTweetResult) {
+        callTwitterApi(httpMethod: "GET",
+                       endPoint: TwitterEndpoint.getUserTimeline,
+                       parameters: ["user_id": currentTwitterSession!.userID,
+                                    "count": "20"]) { (json, error) in
                                         
-                    completion(tweets, nil)
-                    
-                }
-            } catch let error {
-                completion(nil, error)
-            }
-            
+                                        guard error == nil, json != nil else {
+                                            completion(nil, error)
+                                            return
+                                        }
+         
+                                        var tweets = [TZTweet]()
+                                        
+                                        for (_, tweetJson):(String, JSON) in json! {
+                                            tweets.append(TZTweet(withJson: tweetJson))
+                                        }
+                                        
+                                        completion(tweets, nil)
         }
     }
     
-    func post(statusText status: String, completion: @escaping TwitterHelperPostTweetResult) {
+    
+    func post(statusText status: String, completion: @escaping TwitterHelperJSONResult) {
         let client = getClient(forSession: currentTwitterSession!)
         var error: NSError?
-        let endPoint = "https://api.twitter.com/1.1/statuses/update.json"
         var parameters = Dictionary<String, String>()
-        
         
         parameters["status"] = status
    
         let request = client.urlRequest(withMethod: "POST",
-                                        url: endPoint,
+                                        url: TwitterEndpoint.postStatusUpdate,
                                         parameters: parameters,
                                         error: &error)
         
@@ -194,10 +183,8 @@ class TwitterHelper {
                 // everything else is an error
             default:
                 completion(nil, HTTPError.httpResponseError(urlResponse.statusCode))
-            }
-            
+            }            
         }
-        
     }    
 }
 
