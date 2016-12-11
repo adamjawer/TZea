@@ -2,9 +2,9 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11542" systemVersion="16B2657" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="CDTweet" representedClassName="CDTweet" syncable="YES">
         <attribute name="createdDate" attributeType="Date" usesScalarValueType="NO" indexed="YES" syncable="YES"/>
-        <attribute name="json" attributeType="String" syncable="YES"/>
+        <attribute name="json" attributeType="Binary" syncable="YES"/>
         <attribute name="tweetId" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" indexed="YES" syncable="YES"/>
-        <attribute name="userId" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="userId" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" indexed="YES" syncable="YES"/>
     </entity>
     <elements>
         <element name="CDTweet" positionX="-63" positionY="-18" width="128" height="105"/>

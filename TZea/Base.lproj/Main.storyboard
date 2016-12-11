@@ -291,11 +291,20 @@
                                             <constraint firstAttribute="trailing" secondItem="dpq-wC-MOo" secondAttribute="trailing" id="vX2-On-pk8"/>
                                         </constraints>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Dy-p3-dw7">
+                                        <rect key="frame" x="8" y="8" width="93" height="30"/>
+                                        <state key="normal" title="CoreDataTest"/>
+                                        <connections>
+                                            <segue destination="aIK-CJ-cSo" kind="presentation" identifier="coreDataTest" id="nnz-jc-eXp"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="EDc-Va-3ot" firstAttribute="leading" secondItem="vQs-IC-Rod" secondAttribute="leading" id="D7q-Ph-mYA"/>
                                     <constraint firstItem="Zf8-R1-mJw" firstAttribute="centerX" secondItem="vQs-IC-Rod" secondAttribute="centerX" id="DN2-A6-T9M"/>
+                                    <constraint firstItem="9Dy-p3-dw7" firstAttribute="leading" secondItem="vQs-IC-Rod" secondAttribute="leading" constant="8" id="S6u-7P-qte"/>
+                                    <constraint firstItem="9Dy-p3-dw7" firstAttribute="top" secondItem="vQs-IC-Rod" secondAttribute="top" constant="8" id="SBc-Rb-i7I"/>
                                     <constraint firstAttribute="height" constant="93" id="XD1-EG-iSH"/>
                                     <constraint firstItem="Zf8-R1-mJw" firstAttribute="top" secondItem="EDc-Va-3ot" secondAttribute="bottom" id="bpr-wG-tn2"/>
                                     <constraint firstItem="EDc-Va-3ot" firstAttribute="top" secondItem="vQs-IC-Rod" secondAttribute="top" id="qeh-Sk-lKd"/>
@@ -366,6 +375,52 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gNz-Wg-GG0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2049" y="636"/>
+        </scene>
+        <!--Core Data Test Table View Controller-->
+        <scene sceneID="5q8-9z-KOE">
+            <objects>
+                <tableViewController id="aIK-CJ-cSo" customClass="CoreDataTestTableViewController" customModule="TZea" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="9dk-9x-PCf">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellId" textLabel="IU2-5c-vxG" detailTextLabel="Vja-ku-yJk" style="IBUITableViewCellStyleSubtitle" id="vv2-wE-yJZ">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vv2-wE-yJZ" id="HWG-e3-AOI">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="IU2-5c-vxG">
+                                            <rect key="frame" x="15" y="4" width="34" height="21"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Vja-ku-yJk">
+                                            <rect key="frame" x="15" y="25" width="44" height="15"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="aIK-CJ-cSo" id="FoP-22-hZM"/>
+                            <outlet property="delegate" destination="aIK-CJ-cSo" id="YmW-bv-U6P"/>
+                        </connections>
+                    </tableView>
+                    <toolbarItems/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xrh-eV-esM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2978" y="779"/>
         </scene>
     </scenes>
     <resources>

@@ -81,6 +81,10 @@ class UserTweetsViewController: UIViewController {
                     self.dismiss(animated: true)
                 }
             }
+        } else if segue.identifier == "coreDataTest" {
+            if let controller = segue.destination as? CoreDataTestTableViewController {
+                controller.coreDataStack = coreDataStack
+            }
         }
     }
     
@@ -113,24 +117,26 @@ class UserTweetsViewController: UIViewController {
                 return
             }
             
-            /*
              guard let tweetEntityDescription = NSEntityDescription.entity(forEntityName: "CDTweet", in: self.coreDataStack.managedObjectContext) else {
              fatalError("Unable to load entities")
              }
              
              // add these tweets to core data and update the fetched results controller
              for tzTweet in tweets! {
-             // add it to the database
+                // does this tweet already exist?
+                if self.tweetExistsInDB(tweetId: tzTweet.tweetId()) {
+                    continue
+                }
+                
+                // add it to the database
+                let tweet = CDTweet(entity: tweetEntityDescription, insertInto: self.coreDataStack.managedObjectContext)
              
-             let tweet = CDTweet(entity: tweetEntityDescription, insertInto: self.coreDataStack.managedObjectContext)
-             
-             tweet.tweetId = tzTweet.tweetId()
-             tweet.userId = tzTweet.userId()
-             tweet.createdDate =
-             }
-             
+                tweet.tweetId = tzTweet.tweetId()
+                tweet.userId = tzTweet.userId()
+                tweet.createdDate = tzTweet.createdDate()?.getSwiftNSDate()
+                tweet.json = tzTweet.getJsonAsNSData()
+            }
              self.coreDataStack.saveMainContext()
-             */
             
             let tweetCount = tweets!.count
             
@@ -146,6 +152,21 @@ class UserTweetsViewController: UIViewController {
         }
     }
 
+    func tweetExistsInDB(tweetId: Int64) -> Bool {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "CDTweet")
+        fetchRequest.predicate = NSPredicate(format: "tweetId == \(tweetId)")
+        
+        var tweetCount = -1
+        do {
+            tweetCount = try coreDataStack.managedObjectContext.count(for: fetchRequest)
+        } catch {
+            print("ERROR: count failed")
+        }
+        
+        return tweetCount == 1
+        
+    }
+    
     // move to top means if we posted something new, we want to display it at the top
     func refreshTweets(moveToTop: Bool) {
         
@@ -271,7 +292,6 @@ extension UserTweetsViewController: UIScrollViewDelegate {
             
             profileView.transform = profileView.transform.scaledBy(x: scalePercent, y: scalePercent)
             
-            print(offsetY)
             let headerTextAlpha = 1 - min(offsetY, Constants.headerTextAlphaOffsetMax) / Constants.headerTextAlphaOffsetMax
             headerView.userNameLabel.alpha = headerTextAlpha
             headerView.screenNameLabel.alpha = headerTextAlpha
@@ -287,5 +307,17 @@ extension UserTweetsViewController: UIScrollViewDelegate {
             }
         }
         
+    }
+}
+
+extension NSDate {
+    func getSwiftDate() -> Date {
+        return Date(timeIntervalSinceReferenceDate: self.timeIntervalSinceReferenceDate)
+    }
+}
+
+extension Date {
+    func getSwiftNSDate() -> NSDate {
+        return NSDate(timeIntervalSinceReferenceDate: self.timeIntervalSinceReferenceDate)
     }
 }

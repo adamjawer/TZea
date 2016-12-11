@@ -148,7 +148,6 @@ class TwitterHelper {
             
         }
     }
-
     
     func post(statusText status: String, completion: @escaping TwitterHelperPostTweetResult) {
         let client = getClient(forSession: currentTwitterSession!)
@@ -199,8 +198,7 @@ class TwitterHelper {
             
         }
         
-    }
-    
+    }    
 }
 
 

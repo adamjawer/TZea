@@ -12,12 +12,43 @@ import SwiftyJSON
 struct TZTweet {
     var json: JSON
     
-    init(withJson: JSON) {
-        json = withJson
+    init(withJson json: JSON) {
+        self.json = json
     }
     
-    func userId() -> String? {
-        return json["user"]["id"].string
+    init(withData data: Data) {
+        self.json = JSON(data: data)
+    }
+    
+    init(withNSData data: NSData) {
+        let data = Data.init(referencing: data)
+        self.json = JSON(data: data)
+    }
+    
+    func getJsonAsData() -> Data? {
+        do {
+            let data = try json.rawData()
+            return data
+        } catch {
+            return nil
+        }
+    }
+    
+    func getJsonAsNSData() -> NSData? {
+        do {
+            let data = try json.rawData()
+            let nsData = NSData(data: data)
+            
+            return nsData
+        } catch {
+            return nil
+        }
+        
+        
+    }
+    
+    func userId() -> Int64 {
+        return json["user"]["id"].int64Value
     }
     
     func tweetId() -> Int64 {
@@ -39,6 +70,16 @@ struct TZTweet {
             formatter.dateFormat = "EEE MMM dd HH:mm:ss Z yyyy"
             
             return formatter.date(from: dateString)
+        } else {
+            return nil
+        }
+    }
+    
+    func tweetTimeStamp() -> String? {
+        if let date = createdDate() {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "MMM d, yyyy h:mm:ss a Z"
+            return dateFormatter.string(from: date)
         } else {
             return nil
         }

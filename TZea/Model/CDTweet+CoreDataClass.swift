@@ -11,5 +11,5 @@ import CoreData
 
 @objc(CDTweet)
 public class CDTweet: NSManagedObject {
-
+    // This is my code
 }
