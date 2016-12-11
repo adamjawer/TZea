@@ -55,6 +55,8 @@ class UserTweetsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        navigationController?.setNavigationBarHidden(true, animated: false)
+        
         // are we logged in?
         if TwitterHelper.sharedInstance().currentTwitterSession == nil {
             performSegue(withIdentifier: "ShowLoginView", sender: nil)
@@ -83,7 +85,16 @@ class UserTweetsViewController: UIViewController {
             if let controller = segue.destination as? CoreDataTestTableViewController {
                 controller.coreDataStack = coreDataStack
             }
+        } else if segue.identifier == "ShowTweetDetail" {
+            if let controller = segue.destination as? TweetDetailViewController {
+                controller.coreDataStack = coreDataStack
+                if let indexPath = tableView.indexPathForSelectedRow {
+                    controller.tweet = self.fetchedResultsController?.object(at: indexPath)
+                    navigationItem.title = ""
+                }
+            }
         }
+        
     }
     
     // MARK: - Events
@@ -137,8 +148,9 @@ class UserTweetsViewController: UIViewController {
             
             if self.coreDataStack.managedObjectContext.hasChanges {
                 self.coreDataStack.saveMainContext()
-                self.updateTweetCount()
             }
+            
+            self.updateTweetCount()
         }
     }
 

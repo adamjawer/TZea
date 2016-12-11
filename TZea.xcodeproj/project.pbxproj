@@ -24,6 +24,7 @@
 		48635B471DF76043009B813E /* TZeaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48635B461DF76043009B813E /* TZeaUITests.swift */; };
 		48635B5D1DF767A7009B813E /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 48635B5C1DF767A7009B813E /* Podfile */; };
 		486C029A1DFCA47D005EF10B /* CoreDataTestTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486C02991DFCA47D005EF10B /* CoreDataTestTableViewController.swift */; };
+		486C02C01DFDF13D005EF10B /* TweetDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486C02BF1DFDF13D005EF10B /* TweetDetailViewController.swift */; };
 		48D01BDE1DFAF15F002C3291 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D01BDD1DFAF15F002C3291 /* ImageCache.swift */; };
 		48D50A871DF8AE54003A496C /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D50A861DF8AE54003A496C /* ComposeViewController.swift */; };
 		48D50A8A1DF8B0CB003A496C /* ComposeToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D50A891DF8B0CB003A496C /* ComposeToolbar.swift */; };
@@ -78,6 +79,7 @@
 		48635B481DF76043009B813E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		48635B5C1DF767A7009B813E /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		486C02991DFCA47D005EF10B /* CoreDataTestTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataTestTableViewController.swift; sourceTree = "<group>"; };
+		486C02BF1DFDF13D005EF10B /* TweetDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetDetailViewController.swift; sourceTree = "<group>"; };
 		4894696C1DF83DDE00D5CD0E /* TZea.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TZea.entitlements; sourceTree = "<group>"; };
 		48D01BDD1DFAF15F002C3291 /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		48D50A861DF8AE54003A496C /* ComposeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
@@ -238,6 +240,14 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		486C02BE1DFDF115005EF10B /* TweetDetail */ = {
+			isa = PBXGroup;
+			children = (
+				486C02BF1DFDF13D005EF10B /* TweetDetailViewController.swift */,
+			);
+			path = TweetDetail;
+			sourceTree = "<group>";
+		};
 		48D01BDC1DFAF13F002C3291 /* ImageCache */ = {
 			isa = PBXGroup;
 			children = (
@@ -299,6 +309,7 @@
 		48F1E30B1DF7B55200ECBB91 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				486C02BE1DFDF115005EF10B /* TweetDetail */,
 				481265271DFC465E00A9FFF2 /* LaunchViewController */,
 				48D50A851DF8AE3E003A496C /* Compose */,
 				48F4EFD41DF84795008BC6B4 /* UserTweets */,
@@ -587,6 +598,7 @@
 				48F4EFD61DF847BC008BC6B4 /* UserTweetsViewController.swift in Sources */,
 				481265261DFBB1D700A9FFF2 /* CDTweet+CoreDataProperties.swift in Sources */,
 				48D50A871DF8AE54003A496C /* ComposeViewController.swift in Sources */,
+				486C02C01DFDF13D005EF10B /* TweetDetailViewController.swift in Sources */,
 				48D50A8F1DF8FED6003A496C /* UserTweetsTweetCell.swift in Sources */,
 				481265291DFC468E00A9FFF2 /* LaunchViewController.swift in Sources */,
 				4812652D1DFC48A600A9FFF2 /* UserTweetsHeaderView.swift in Sources */,

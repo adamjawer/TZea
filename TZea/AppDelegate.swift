@@ -39,27 +39,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = viewController
         
         // give it the Core Data Stack
-        if viewController.responds(to: #selector(setter: AppDelegate.coreDataStack)) {
-            viewController.perform(#selector(setter: AppDelegate.coreDataStack), with: coreDataStack)
+        if let navController = viewController as? UINavigationController,
+            let userTweetsController = navController.viewControllers.first as? UserTweetsViewController {
+            
+            userTweetsController.coreDataStack = coreDataStack
         }
         
         TwitterHelper.sharedInstance().coreDataStack = coreDataStack
-
-        /*
-         // This is currently a bug in swift. The instantiateViewController func is supposed to throw an error
-         // It only does that in the objective-c version
-        do {
-            let vc = try sb.instantiateViewController(withIdentifier: identifier)
-            window?.rootViewController = vc
-        } catch let error as NSError {
-            print("Error switching view controllers")
-        }
-         */
-        
     }
     
     private struct StoryboardIdentifier {
-        static let userTweetsView = "UserTweetsView"
+        static let userTweetsView = "UserTweetsNavController"
         static let launchView = "LaunchView"
     }
     

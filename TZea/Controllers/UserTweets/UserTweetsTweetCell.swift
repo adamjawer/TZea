@@ -15,16 +15,44 @@ class UserTweetsTweetCell: UITableViewCell {
     @IBOutlet weak var screenNameLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var tweetTextLabel: UILabel!        
+    @IBOutlet weak var attachmentImageView: UIImageView!
+    @IBOutlet weak var attachmentHeightConstraint: NSLayoutConstraint!
 
     var downloadImageTask: URLSessionDownloadTask?
+    var downloadMediaImageTask: URLSessionDownloadTask?
     
     func configure(withTweet tweet: CDTweet) {
         
         downloadImageTask?.cancel()
+        downloadMediaImageTask?.cancel()
         
         if let data = tweet.json {
             let tzTweet = TZTweet(withNSData: data)
-        
+
+            attachmentHeightConstraint.constant = 0
+            setNeedsLayout()
+
+            if let mediaURL = tzTweet.json["extended_entities"]["media"][0]["media_url_https"].string,
+                let type = tzTweet.json["extended_entities"]["media"][0]["type"].string,
+                let url = URL(string: mediaURL) {
+                if type == "photo" {
+
+                    self.attachmentHeightConstraint.constant = 143
+                    self.setNeedsLayout()
+                    
+                    downloadMediaImageTask = ImageCache.sharedInstance().getCachedImage(forUrl: url) { (image, error) in
+                        guard error == nil, image != nil else {
+                            print("Error getting media image")
+                            return
+                        }
+                        
+                        self.attachmentImageView.image = image
+                    }
+                    
+                }
+            }
+            
+            
             userNameLabel.text = tzTweet.userName()
             if let screenName = tzTweet.screenName() {
                 screenNameLabel.text = "@\(screenName)"
