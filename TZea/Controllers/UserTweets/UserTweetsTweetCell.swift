@@ -18,31 +18,35 @@ class UserTweetsTweetCell: UITableViewCell {
 
     var downloadImageTask: URLSessionDownloadTask?
     
-    func configure(withTweet tweet: TZTweet) {
+    func configure(withTweet tweet: CDTweet) {
         
         downloadImageTask?.cancel()
         
-        userNameLabel.text = tweet.userName()
-        if let screenName = tweet.screenName() {
-            screenNameLabel.text = "@\(screenName)"
-        } else {
-            screenNameLabel.text = ""
-        }
-        dateLabel.text = tweet.formattedTweetDate()
-        tweetTextLabel.text = tweet.text()
+        if let data = tweet.json {
+            let tzTweet = TZTweet(withNSData: data)
         
-        if let url = tweet.userProfileUrl() {
-            downloadImageTask = ImageCache.sharedInstance().getCachedImage(forUrl: url) { (image, error) in
-                
-                guard error == nil, image != nil else {
-                    self.userImageView.image = UIImage(named: "BrokenImage")
-                    return
-                }
-                
-                self.userImageView.image = image
+            userNameLabel.text = tzTweet.userName()
+            if let screenName = tzTweet.screenName() {
+                screenNameLabel.text = "@\(screenName)"
+            } else {
+                screenNameLabel.text = ""
             }
-        } else {
-            userImageView.image = UIImage(named: "NoUserImage")
+            dateLabel.text = tzTweet.formattedTweetDate()
+            tweetTextLabel.text = tzTweet.text()
+            
+            if let url = tzTweet.userProfileUrl() {
+                downloadImageTask = ImageCache.sharedInstance().getCachedImage(forUrl: url) { (image, error) in
+                    
+                    guard error == nil, image != nil else {
+                        self.userImageView.image = UIImage(named: "BrokenImage")
+                        return
+                    }
+                    
+                    self.userImageView.image = image
+                }
+            } else {
+                userImageView.image = UIImage(named: "NoUserImage")
+            }
         }
     }
     

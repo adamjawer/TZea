@@ -36,7 +36,7 @@ class UserTweetsViewController: UIViewController {
     
     var coreDataStack: CoreDataStack!
     
-    fileprivate var tweetsDataSource = [TZTweet]()
+//    fileprivate var tweetsDataSource = [TZTweet]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -147,7 +147,7 @@ class UserTweetsViewController: UIViewController {
                 pluralS = "s"
             }
             self.bannerTweetCountLabel.text = "\(tweetCount) Tweet\(pluralS)"
-            self.tweetsDataSource = tweets!
+//            self.tweetsDataSource = tweets!
             self.tableView.reloadData()
         }
     }
@@ -237,24 +237,71 @@ class UserTweetsViewController: UIViewController {
             headerView.screenNameLabel.text = ""
         }
     }
+    
+    
+    // MARK: - Fetched Results Controller
+    var _fetchedResultsController: NSFetchedResultsController<CDTweet>? = nil
+    var fetchedResultsController: NSFetchedResultsController<CDTweet>? {
+        guard coreDataStack != nil else {
+            return nil
+        }
+        if _fetchedResultsController != nil {
+            return _fetchedResultsController!
+        }
+        
+        let fetchRequest = NSFetchRequest<CDTweet>(entityName: "CDTweet")
+        
+        fetchRequest.fetchBatchSize = 20
+        
+        // Sort by date descending - Newest tweets first
+        let sortDescriptor = NSSortDescriptor(key: "createdDate", ascending: false)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        
+        let userId = TwitterHelper.sharedInstance().currentTwitterSession!.userID
+        let predicate = NSPredicate(format: "userId = %@", userId)
+        fetchRequest.predicate = predicate
+        
+        // Edit the section name key path and cache name if appropriate.
+        // nil for section name key path means "no sections".
+        let aFetchedResultsController = NSFetchedResultsController(
+            fetchRequest: fetchRequest,
+            managedObjectContext: coreDataStack.managedObjectContext,
+            sectionNameKeyPath: nil,
+            cacheName: "Master")
+        
+        // aFetchedResultsController.delegate = self // Don't do this yet
+        _fetchedResultsController = aFetchedResultsController
+        
+        do {
+            try _fetchedResultsController!.performFetch()
+        } catch {
+            // Replace this implementation with code to handle the error appropriately.
+            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+            let nserror = error as NSError
+            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+        }
+        
+        return _fetchedResultsController!
+    }
+
 }
 
 extension UserTweetsViewController: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return self.fetchedResultsController?.sections?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tweetsDataSource.count
+        let sectionInfo = self.fetchedResultsController?.sections![section]
+        return sectionInfo?.numberOfObjects ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TweetCellId", for: indexPath) as! UserTweetsTweetCell
         
-        let tweet = tweetsDataSource[indexPath.row]
-        
-        cell.configure(withTweet: tweet)
-        
+        if let tweet = self.fetchedResultsController?.object(at: indexPath) {
+            cell.configure(withTweet: tweet)
+        }
         
         return cell
     }
