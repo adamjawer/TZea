@@ -26,8 +26,12 @@ class CoreDataTestTableViewController: UITableViewController {
         let fetchRequest = NSFetchRequest<CDTweet>(entityName: "CDTweet")
         
         fetchRequest.fetchBatchSize = 20
+
+        let userId = TwitterHelper.sharedInstance().currentTwitterSession!.userID
+        let predicate = NSPredicate(format: "userId = %@", userId)
+        fetchRequest.predicate = predicate
         
-        let sortDescriptor = NSSortDescriptor(key: "createdDate", ascending: false)
+        let sortDescriptor = NSSortDescriptor(key: "tweetId", ascending: false)
         
         // no sort descriptor for now
         fetchRequest.sortDescriptors = [sortDescriptor]
@@ -77,7 +81,8 @@ class CoreDataTestTableViewController: UITableViewController {
             let tzTweet = TZTweet(withNSData: data)
             
             cell.textLabel?.text = tzTweet.text()
-            cell.detailTextLabel?.text = tzTweet.tweetTimeStamp()
+//            cell.detailTextLabel?.text = tzTweet.tweetTimeStamp()
+            cell.detailTextLabel?.text = "TweetId: \(tzTweet.tweetId())"
         }
                 
         return cell

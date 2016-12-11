@@ -42,6 +42,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if viewController.responds(to: #selector(setter: AppDelegate.coreDataStack)) {
             viewController.perform(#selector(setter: AppDelegate.coreDataStack), with: coreDataStack)
         }
+        
+        TwitterHelper.sharedInstance().coreDataStack = coreDataStack
 
         /*
          // This is currently a bug in swift. The instantiateViewController func is supposed to throw an error

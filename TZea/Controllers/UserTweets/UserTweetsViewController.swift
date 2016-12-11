@@ -36,8 +36,6 @@ class UserTweetsViewController: UIViewController {
     
     var coreDataStack: CoreDataStack!
     
-//    fileprivate var tweetsDataSource = [TZTweet]()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -62,7 +60,7 @@ class UserTweetsViewController: UIViewController {
             performSegue(withIdentifier: "ShowLoginView", sender: nil)
         } else {
             getUserInfo()
-            loadTweets()
+            loadTweets(inDirection: .getNewer)
         }
     }
     
@@ -76,7 +74,7 @@ class UserTweetsViewController: UIViewController {
                 
                 composeTweetController.didClose = { (didPostTweet) in
                     if didPostTweet {
-                        self.refreshTweets(moveToTop: true)
+                        self.loadTweets(inDirection: .getNewer)
                     }
                     self.dismiss(animated: true)
                 }
@@ -110,8 +108,8 @@ class UserTweetsViewController: UIViewController {
         performSegue(withIdentifier: "ShowLoginView", sender: nil)
     }
     
-    func loadTweets() {
-        TwitterHelper.sharedInstance().getUserTweets() { (tweets, error) in
+    func loadTweets(inDirection direction: TwitterHelperGetTweetTimeDirection) {
+        TwitterHelper.sharedInstance().getUserTweets(inDirection: direction) { (tweets, error) in
             guard error == nil, tweets != nil else {
                 print("Error getting tweets: \(error)")
                 return
@@ -136,22 +134,47 @@ class UserTweetsViewController: UIViewController {
                 tweet.createdDate = tzTweet.createdDate()?.getSwiftNSDate()
                 tweet.json = tzTweet.getJsonAsNSData()
             }
-             self.coreDataStack.saveMainContext()
             
-            let tweetCount = tweets!.count
-            
-            let pluralS: String
-            if tweetCount == 1 {
-                pluralS = ""
-            } else {
-                pluralS = "s"
+            if self.coreDataStack.managedObjectContext.hasChanges {
+                self.coreDataStack.saveMainContext()
+                self.updateTweetCount()
             }
-            self.bannerTweetCountLabel.text = "\(tweetCount) Tweet\(pluralS)"
-//            self.tweetsDataSource = tweets!
-            self.tableView.reloadData()
         }
     }
 
+    func updateTweetCount() {
+        let tweetCount = getNumberOfTweetsForSessionUser()
+        
+        let pluralS: String
+        if tweetCount == 1 {
+            pluralS = ""
+        } else {
+            pluralS = "s"
+        }
+        self.bannerTweetCountLabel.text = "\(tweetCount) Tweet\(pluralS)"
+        self._fetchedResultsController = nil
+        self.tableView.reloadData()
+    }
+    
+    func getNumberOfTweetsForSessionUser() -> Int {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "CDTweet")
+        
+        let userId = TwitterHelper.sharedInstance().currentTwitterSession!.userID
+        
+        let predicate = NSPredicate(format: "userId = %@", userId)
+        fetchRequest.predicate = predicate
+        
+        let tweetCount: Int
+        
+        do {
+            tweetCount = try coreDataStack.managedObjectContext.count(for: fetchRequest)
+            return tweetCount
+        } catch let error {
+            print("ERROR: count failed -> \(error)")
+            return 0
+        }
+    }
+    
     func tweetExistsInDB(tweetId: Int64) -> Bool {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "CDTweet")
         fetchRequest.predicate = NSPredicate(format: "tweetId == \(tweetId)")
@@ -164,13 +187,6 @@ class UserTweetsViewController: UIViewController {
         }
         
         return tweetCount == 1
-        
-    }
-    
-    // move to top means if we posted something new, we want to display it at the top
-    func refreshTweets(moveToTop: Bool) {
-        
-        loadTweets()
     }
     
     private func loadBannerImage(atUrl urlString: String) {
@@ -242,7 +258,7 @@ class UserTweetsViewController: UIViewController {
     // MARK: - Fetched Results Controller
     var _fetchedResultsController: NSFetchedResultsController<CDTweet>? = nil
     var fetchedResultsController: NSFetchedResultsController<CDTweet>? {
-        guard coreDataStack != nil else {
+        guard coreDataStack != nil, TwitterHelper.sharedInstance().currentTwitterSession != nil else {
             return nil
         }
         if _fetchedResultsController != nil {
@@ -313,7 +329,27 @@ extension UserTweetsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 106
     }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        // are we displaying the last row? If so, then load more data
+        if indexPath == indexPathForLastRow() {
+            loadTweets(inDirection: .getOlder)
+        }
+    }
+    
+    func indexPathForLastRow() -> IndexPath {
+        let numberOfSections = self.numberOfSections(in: tableView)
+        if numberOfSections > 0 {
+            let numberOfRows = tableView(tableView, numberOfRowsInSection: numberOfSections - 1)
+            if numberOfRows > 0 {
+                return IndexPath(row: numberOfRows - 1, section: numberOfSections - 1)
+            }
+        }
+        
+        return IndexPath(row: -1, section: -1)
+    }
 }
+
 
 extension UserTweetsViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

@@ -25,9 +25,15 @@ enum TwitterHelperError: Error {
     case noData(Error?)
 }
 
+enum TwitterHelperGetTweetTimeDirection {
+    case getNewer
+    case getOlder
+}
+
 class TwitterHelper {
     
     var currentTwitterSession: TWTRSession?
+    var coreDataStack: CoreDataStack!
     
     class func sharedInstance() -> TwitterHelper {
         return _twitterHelper
@@ -117,12 +123,90 @@ class TwitterHelper {
         let userId = session.userID
         return TWTRAPIClient(userID: userId)
     }
+
+    func getMaxTweetId() -> Int64 {
+        return getTweetId(forAggregate: .max)
+    }
     
-    func getUserTweets(completion: @escaping TwitterHelperGetTweetResult) {
+    func getMinTweetId() -> Int64 {
+        return getTweetId(forAggregate: .min)
+    }
+    
+    private enum TwitterHelperAggregateFunction {
+        case min
+        case max
+    }
+    
+    private func getTweetId(forAggregate aggregate: TwitterHelperAggregateFunction) -> Int64 {
+        
+        guard coreDataStack != nil else {
+            return 0
+        }
+        
+        let fetchRequest = NSFetchRequest<NSDictionary>(entityName: "CDTweet")
+        fetchRequest.resultType = .dictionaryResultType
+        
+        let userId = TwitterHelper.sharedInstance().currentTwitterSession!.userID
+        let predicate = NSPredicate(format: "userId = %@", userId)
+        fetchRequest.predicate = predicate
+        
+        let maxExpressionDesc = NSExpressionDescription()
+        maxExpressionDesc.name = "tweetId"
+        
+        let tweetIdExp = NSExpression(forKeyPath: #keyPath(CDTweet.tweetId))
+        
+        let aggregateFunction: String
+        
+        switch aggregate {
+        case .max:
+            aggregateFunction = "max:"
+        case .min:
+            aggregateFunction = "min:"
+        }
+        maxExpressionDesc.expression = NSExpression(forFunction: aggregateFunction, arguments: [tweetIdExp])
+        maxExpressionDesc.expressionResultType = .integer64AttributeType
+        
+        fetchRequest.propertiesToFetch = [maxExpressionDesc]
+        
+        do {
+            let results = try coreDataStack.managedObjectContext.fetch(fetchRequest)
+            let resultDict = results.first!
+            if let tweetId = resultDict["tweetId"] as? Int64 {
+                return tweetId
+            } else {
+                print("Error converting tweetId to int64")
+                return 0
+            }
+        } catch let error as NSError {
+            print("Count not fetch \(error), \(error.userInfo)")
+            return 0
+        }
+    }
+
+    
+    
+    func getUserTweets(inDirection direction: TwitterHelperGetTweetTimeDirection, completion: @escaping TwitterHelperGetTweetResult) {
+        var parameters = Dictionary<String, String>()
+        
+        parameters["user_id"] = currentTwitterSession!.userID
+        parameters["count"] = "6"
+
+        switch direction {
+        case .getNewer:
+            let maxTweetId = getMaxTweetId()
+            if maxTweetId > 0 {
+                parameters["since_id"] = "\(maxTweetId)"
+            }
+        case .getOlder:
+            let minTweetId = getMinTweetId()
+            if minTweetId > 0 {
+                parameters["max_id"] = "\(minTweetId - 1)"
+            }
+        }
+        
         callTwitterApi(httpMethod: "GET",
                        endPoint: TwitterEndpoint.getUserTimeline,
-                       parameters: ["user_id": currentTwitterSession!.userID,
-                                    "count": "20"]) { (json, error) in
+                       parameters: parameters) { (json, error) in
                                         
                                         guard error == nil, json != nil else {
                                             completion(nil, error)
