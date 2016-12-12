@@ -16,6 +16,8 @@ fileprivate struct Constants {
     static let profileScaledMin: CGFloat = 0.8
     static let bannerTitleOffsetMax: CGFloat = -50
     static let headerTextAlphaOffsetMax: CGFloat = 112
+    static let refreshArrowFlipOffset: CGFloat = -60
+    static let defaultBannerHeight: CGFloat = 93
 }
 
 class UserTweetsViewController: UIViewController {
@@ -26,6 +28,7 @@ class UserTweetsViewController: UIViewController {
     
     @IBOutlet weak var bannerView: UIView!
     @IBOutlet weak var bannerImageView: UIImageView!
+    @IBOutlet weak var bannerViewHeighConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var profileView: UIView!
     @IBOutlet weak var profileImageView: UIImageView!
@@ -34,7 +37,12 @@ class UserTweetsViewController: UIViewController {
     @IBOutlet weak var bannerUserNameLabel: UILabel!
     @IBOutlet weak var bannerTweetCountLabel: UILabel!
     
+    @IBOutlet weak var refreshArrow: UIImageView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     var coreDataStack: CoreDataStack!
+    
+    var isLoadingTweets: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +51,8 @@ class UserTweetsViewController: UIViewController {
         headerView.didPressConfigButton = {
             self.configButtonPressed()
         }
+        
+        refreshArrow.alpha = 0
         
         tableView.contentInset = UIEdgeInsets(top: Constants.tableContentOffsetY, left: 0, bottom: 0, right: 0)
         
@@ -120,18 +130,22 @@ class UserTweetsViewController: UIViewController {
     }
     
     func loadTweets(inDirection direction: TwitterHelperGetTweetTimeDirection) {
+        activityIndicator.startAnimating()
+        
         TwitterHelper.sharedInstance().getUserTweets(inDirection: direction) { (tweets, error) in
             guard error == nil, tweets != nil else {
                 print("Error getting tweets: \(error)")
+                self.activityIndicator.stopAnimating()
                 return
             }
             
-             guard let tweetEntityDescription = NSEntityDescription.entity(forEntityName: "CDTweet", in: self.coreDataStack.managedObjectContext) else {
-             fatalError("Unable to load entities")
-             }
-             
-             // add these tweets to core data and update the fetched results controller
-             for tzTweet in tweets! {
+            guard let tweetEntityDescription = NSEntityDescription.entity(forEntityName: "CDTweet", in: self.coreDataStack.managedObjectContext) else {
+                self.activityIndicator.stopAnimating()
+                fatalError("Unable to load entities")
+            }
+            
+            // add these tweets to core data and update the fetched results controller
+            for tzTweet in tweets! {
                 // does this tweet already exist?
                 if self.tweetExistsInDB(tweetId: tzTweet.tweetId()) {
                     continue
@@ -139,7 +153,7 @@ class UserTweetsViewController: UIViewController {
                 
                 // add it to the database
                 let tweet = CDTweet(entity: tweetEntityDescription, insertInto: self.coreDataStack.managedObjectContext)
-             
+                
                 tweet.tweetId = tzTweet.tweetId()
                 tweet.userId = tzTweet.userId()
                 tweet.createdDate = tzTweet.createdDate()?.getSwiftNSDate()
@@ -151,9 +165,10 @@ class UserTweetsViewController: UIViewController {
             }
             
             self.updateTweetCount()
+            self.activityIndicator.stopAnimating()
         }
     }
-
+    
     func updateTweetCount() {
         let tweetCount = getNumberOfTweetsForSessionUser()
         
@@ -258,7 +273,7 @@ class UserTweetsViewController: UIViewController {
                     self.loadBannerImage(atUrl: bannerUrlString)
                 }
             }
-    
+            
         } else {
             profileImageView.image = UIImage(named: "BrokenImage")
             headerView.userNameLabel.text = ""
@@ -311,7 +326,7 @@ class UserTweetsViewController: UIViewController {
         
         return _fetchedResultsController!
     }
-
+    
 }
 
 extension UserTweetsViewController: UITableViewDataSource, UITableViewDelegate {
@@ -362,19 +377,47 @@ extension UserTweetsViewController: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
-
 extension UserTweetsViewController: UIScrollViewDelegate {
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        isLoadingTweets = false
+    }
+
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
         let offsetY = scrollView.contentOffset.y + Constants.tableContentOffsetY
         
-        
         if offsetY <= 0 {
+            print(offsetY)
+            
             bannerView.transform = CGAffineTransform.identity
             profileView.transform = CGAffineTransform.identity
             bannerTitleContainer.transform = CGAffineTransform.identity
             headerView.userNameLabel.alpha = 1
             headerView.screenNameLabel.alpha = 1
+            
+            bannerViewHeighConstraint.constant = Constants.defaultBannerHeight + abs(offsetY)
+            
+            if !activityIndicator.isAnimating && !isLoadingTweets {
+                refreshArrow.alpha = offsetY / (Constants.refreshArrowFlipOffset * 0.5)
+                
+                
+                if offsetY > Constants.refreshArrowFlipOffset {
+                    self.refreshArrow.transform = CGAffineTransform.identity
+                } else {
+                    if refreshArrow.transform == CGAffineTransform.identity {
+                        
+                        UIView.animate(withDuration: 0.2,
+                                       animations: {
+                                        self.refreshArrow.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI))
+                        }, completion: { (finished) in
+                            self.refreshArrow.alpha = 0
+                            self.isLoadingTweets = true
+                            self.loadTweets(inDirection: .getNewer)
+                        })
+                    }
+                }
+            }
         } else {
             let bannerOffset = min(offsetY, Constants.bannerOffsetMax)
             

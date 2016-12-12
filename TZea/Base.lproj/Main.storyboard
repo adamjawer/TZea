@@ -350,23 +350,28 @@
                                             <constraint firstAttribute="trailing" secondItem="dpq-wC-MOo" secondAttribute="trailing" id="vX2-On-pk8"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Dy-p3-dw7">
-                                        <rect key="frame" x="8" y="8" width="93" height="30"/>
-                                        <state key="normal" title="CoreDataTest"/>
-                                        <connections>
-                                            <segue destination="aIK-CJ-cSo" kind="presentation" identifier="coreDataTest" id="nnz-jc-eXp"/>
-                                        </connections>
-                                    </button>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="fgg-rP-nki">
+                                        <rect key="frame" x="177" y="36" width="20" height="20"/>
+                                    </activityIndicatorView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RefreshArrow" translatesAutoresizingMaskIntoConstraints="NO" id="NKf-8d-Q0C">
+                                        <rect key="frame" x="178" y="36" width="19" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="19" id="FTA-cL-u5N"/>
+                                            <constraint firstAttribute="height" constant="20" id="mnc-Sh-CQd"/>
+                                        </constraints>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="EDc-Va-3ot" firstAttribute="leading" secondItem="vQs-IC-Rod" secondAttribute="leading" id="D7q-Ph-mYA"/>
                                     <constraint firstItem="Zf8-R1-mJw" firstAttribute="centerX" secondItem="vQs-IC-Rod" secondAttribute="centerX" id="DN2-A6-T9M"/>
-                                    <constraint firstItem="9Dy-p3-dw7" firstAttribute="leading" secondItem="vQs-IC-Rod" secondAttribute="leading" constant="8" id="S6u-7P-qte"/>
-                                    <constraint firstItem="9Dy-p3-dw7" firstAttribute="top" secondItem="vQs-IC-Rod" secondAttribute="top" constant="8" id="SBc-Rb-i7I"/>
+                                    <constraint firstItem="fgg-rP-nki" firstAttribute="centerX" secondItem="vQs-IC-Rod" secondAttribute="centerX" id="Kgc-sa-Tcy"/>
                                     <constraint firstAttribute="height" constant="93" id="XD1-EG-iSH"/>
+                                    <constraint firstItem="NKf-8d-Q0C" firstAttribute="centerY" secondItem="vQs-IC-Rod" secondAttribute="centerY" id="YvC-WL-v7F"/>
                                     <constraint firstItem="Zf8-R1-mJw" firstAttribute="top" secondItem="EDc-Va-3ot" secondAttribute="bottom" id="bpr-wG-tn2"/>
+                                    <constraint firstItem="fgg-rP-nki" firstAttribute="centerY" secondItem="vQs-IC-Rod" secondAttribute="centerY" id="hAZ-UB-1O6"/>
                                     <constraint firstItem="EDc-Va-3ot" firstAttribute="top" secondItem="vQs-IC-Rod" secondAttribute="top" id="qeh-Sk-lKd"/>
+                                    <constraint firstItem="NKf-8d-Q0C" firstAttribute="centerX" secondItem="vQs-IC-Rod" secondAttribute="centerX" id="udT-VB-7v4"/>
                                     <constraint firstAttribute="trailing" secondItem="EDc-Va-3ot" secondAttribute="trailing" id="vyG-fc-aBM"/>
                                     <constraint firstItem="EDc-Va-3ot" firstAttribute="height" secondItem="vQs-IC-Rod" secondAttribute="height" id="wEp-Sx-ff8"/>
                                 </constraints>
@@ -422,13 +427,16 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="fgg-rP-nki" id="5Lp-76-duP"/>
                         <outlet property="bannerImageView" destination="EDc-Va-3ot" id="ssY-oy-18U"/>
                         <outlet property="bannerTitleContainer" destination="Zf8-R1-mJw" id="cjb-jt-ey1"/>
                         <outlet property="bannerTweetCountLabel" destination="CRQ-NE-dNx" id="wvK-n6-XvJ"/>
                         <outlet property="bannerUserNameLabel" destination="dpq-wC-MOo" id="KjR-AV-jAS"/>
                         <outlet property="bannerView" destination="vQs-IC-Rod" id="A2C-Jp-2bY"/>
+                        <outlet property="bannerViewHeighConstraint" destination="XD1-EG-iSH" id="flC-Dv-D71"/>
                         <outlet property="profileImageView" destination="YJd-Dg-g8y" id="UsH-ls-e3y"/>
                         <outlet property="profileView" destination="vR3-YV-OaO" id="TAU-Zn-Ptu"/>
+                        <outlet property="refreshArrow" destination="NKf-8d-Q0C" id="brJ-wC-4r2"/>
                         <outlet property="tableView" destination="U94-ZG-ujw" id="A5o-yo-Vyp"/>
                         <segue destination="BYZ-38-t0r" kind="presentation" identifier="ShowLoginView" id="eZl-bd-arb"/>
                     </connections>
@@ -668,6 +676,7 @@
         <image name="CloseIcon" width="15" height="15"/>
         <image name="ComposeIcon" width="30" height="30"/>
         <image name="HeartIconOffLight" width="15" height="15"/>
+        <image name="RefreshArrow" width="19" height="20"/>
         <image name="ReplyIconLight" width="14" height="10"/>
         <image name="TZeaLogoFullFrame" width="200" height="174"/>
         <image name="TwitterIcoLogoWhite" width="16" height="13"/>
