@@ -29,8 +29,14 @@ class UserTweetsTweetCell: UITableViewCell {
         if let data = tweet.json {
             let tzTweet = TZTweet(withNSData: data)
 
-            attachmentHeightConstraint.constant = 0
-            setNeedsLayout()
+            
+            userNameLabel.text = tzTweet.userName()
+            
+            screenNameLabel.text = tzTweet.screenName() 
+            
+            dateLabel.text = tzTweet.formattedTweetDate()
+            
+            tweetTextLabel.attributedText = tzTweet.text(formattedFor: .list)
 
             if let mediaURL = tzTweet.json["extended_entities"]["media"][0]["media_url_https"].string,
                 let type = tzTweet.json["extended_entities"]["media"][0]["type"].string,
@@ -38,7 +44,6 @@ class UserTweetsTweetCell: UITableViewCell {
                 if type == "photo" {
 
                     self.attachmentHeightConstraint.constant = 143
-                    self.setNeedsLayout()
                     
                     downloadMediaImageTask = ImageCache.sharedInstance().getCachedImage(forUrl: url) { (image, error) in
                         guard error == nil, image != nil else {
@@ -50,17 +55,9 @@ class UserTweetsTweetCell: UITableViewCell {
                     }
                     
                 }
-            }
-            
-            
-            userNameLabel.text = tzTweet.userName()
-            if let screenName = tzTweet.screenName() {
-                screenNameLabel.text = "@\(screenName)"
             } else {
-                screenNameLabel.text = ""
+                attachmentHeightConstraint.constant = 0
             }
-            dateLabel.text = tzTweet.formattedTweetDate()
-            tweetTextLabel.text = tzTweet.text()
             
             if let url = tzTweet.userProfileUrl() {
                 downloadImageTask = ImageCache.sharedInstance().getCachedImage(forUrl: url) { (image, error) in

@@ -81,7 +81,6 @@ class CoreDataTestTableViewController: UITableViewController {
             let tzTweet = TZTweet(withNSData: data)
             
             cell.textLabel?.text = tzTweet.text()
-//            cell.detailTextLabel?.text = tzTweet.tweetTimeStamp()
             cell.detailTextLabel?.text = "TweetId: \(tzTweet.tweetId())"
         }
                 

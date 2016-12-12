@@ -25,6 +25,7 @@
 		48635B5D1DF767A7009B813E /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 48635B5C1DF767A7009B813E /* Podfile */; };
 		486C029A1DFCA47D005EF10B /* CoreDataTestTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486C02991DFCA47D005EF10B /* CoreDataTestTableViewController.swift */; };
 		486C02C01DFDF13D005EF10B /* TweetDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486C02BF1DFDF13D005EF10B /* TweetDetailViewController.swift */; };
+		486C02C51DFF220E005EF10B /* TweetDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486C02C41DFF220E005EF10B /* TweetDetailTableViewCell.swift */; };
 		48D01BDE1DFAF15F002C3291 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D01BDD1DFAF15F002C3291 /* ImageCache.swift */; };
 		48D50A871DF8AE54003A496C /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D50A861DF8AE54003A496C /* ComposeViewController.swift */; };
 		48D50A8A1DF8B0CB003A496C /* ComposeToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D50A891DF8B0CB003A496C /* ComposeToolbar.swift */; };
@@ -80,6 +81,7 @@
 		48635B5C1DF767A7009B813E /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		486C02991DFCA47D005EF10B /* CoreDataTestTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataTestTableViewController.swift; sourceTree = "<group>"; };
 		486C02BF1DFDF13D005EF10B /* TweetDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetDetailViewController.swift; sourceTree = "<group>"; };
+		486C02C41DFF220E005EF10B /* TweetDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetDetailTableViewCell.swift; sourceTree = "<group>"; };
 		4894696C1DF83DDE00D5CD0E /* TZea.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TZea.entitlements; sourceTree = "<group>"; };
 		48D01BDD1DFAF15F002C3291 /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		48D50A861DF8AE54003A496C /* ComposeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
@@ -243,9 +245,18 @@
 		486C02BE1DFDF115005EF10B /* TweetDetail */ = {
 			isa = PBXGroup;
 			children = (
+				486C02C31DFF21D7005EF10B /* Cells */,
 				486C02BF1DFDF13D005EF10B /* TweetDetailViewController.swift */,
 			);
 			path = TweetDetail;
+			sourceTree = "<group>";
+		};
+		486C02C31DFF21D7005EF10B /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				486C02C41DFF220E005EF10B /* TweetDetailTableViewCell.swift */,
+			);
+			name = Cells;
 			sourceTree = "<group>";
 		};
 		48D01BDC1DFAF13F002C3291 /* ImageCache */ = {
@@ -587,6 +598,7 @@
 				4812651E1DFBAF7A00A9FFF2 /* TZea.xcdatamodeld in Sources */,
 				48D01BDE1DFAF15F002C3291 /* ImageCache.swift in Sources */,
 				48D50A8A1DF8B0CB003A496C /* ComposeToolbar.swift in Sources */,
+				486C02C51DFF220E005EF10B /* TweetDetailTableViewCell.swift in Sources */,
 				48D50A911DF903AD003A496C /* TZTweet.swift in Sources */,
 				481265311DFC5B3100A9FFF2 /* NetworkingConstants.swift in Sources */,
 				486C029A1DFCA47D005EF10B /* CoreDataTestTableViewController.swift in Sources */,
