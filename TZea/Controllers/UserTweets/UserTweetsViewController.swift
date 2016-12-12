@@ -391,12 +391,16 @@ extension UserTweetsViewController: UIScrollViewDelegate {
             print(offsetY)
             
             bannerView.transform = CGAffineTransform.identity
-            profileView.transform = CGAffineTransform.identity
             bannerTitleContainer.transform = CGAffineTransform.identity
             headerView.userNameLabel.alpha = 1
             headerView.screenNameLabel.alpha = 1
             
             bannerViewHeighConstraint.constant = Constants.defaultBannerHeight + abs(offsetY)
+            if offsetY == 0 {
+                profileView.transform = CGAffineTransform.identity
+            } else {
+                profileView.transform = CGAffineTransform(translationX: 0, y: -offsetY)
+            }
             
             if !activityIndicator.isAnimating && !isLoadingTweets {
                 refreshArrow.alpha = offsetY / (Constants.refreshArrowFlipOffset * 0.5)
