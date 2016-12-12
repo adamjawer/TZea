@@ -27,14 +27,14 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="249" verticalCompressionResistancePriority="249" image="TZeaLogoFullFrame" translatesAutoresizingMaskIntoConstraints="NO" id="Qc4-Rz-ezJ">
-                                <rect key="frame" x="87" y="8" width="200" height="180"/>
+                                <rect key="frame" x="87" y="80" width="200" height="180"/>
                                 <constraints>
                                     <constraint firstAttribute="height" priority="250" constant="180" id="OvF-Ub-rTQ"/>
                                     <constraint firstAttribute="width" secondItem="Qc4-Rz-ezJ" secondAttribute="height" multiplier="10:9" id="tuh-fb-EaL"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Making IZEA Twitter" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xx3-Kj-CKR">
-                                <rect key="frame" x="85" y="196" width="206" height="27"/>
+                                <rect key="frame" x="85" y="268" width="206" height="27"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
                                 <color key="textColor" red="0.43967552784761765" green="0.17259276286862549" blue="0.36909847365418214" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -81,15 +81,15 @@
                         <constraints>
                             <constraint firstItem="Qc4-Rz-ezJ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="4NN-xD-Ojm"/>
                             <constraint firstItem="grG-fw-oec" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="7ZZ-Q7-vrA"/>
+                            <constraint firstItem="TCz-Vd-Qyh" firstAttribute="top" secondItem="xx3-Kj-CKR" secondAttribute="bottom" priority="749" constant="20" id="9W4-FI-WPm"/>
                             <constraint firstItem="qXg-bP-q8b" firstAttribute="leading" secondItem="TCz-Vd-Qyh" secondAttribute="leading" id="GUC-Vi-TJd"/>
                             <constraint firstAttribute="trailing" secondItem="grG-fw-oec" secondAttribute="trailing" id="JuQ-0w-n82"/>
                             <constraint firstItem="qXg-bP-q8b" firstAttribute="height" secondItem="TCz-Vd-Qyh" secondAttribute="height" id="YfH-J6-Vai"/>
                             <constraint firstItem="TCz-Vd-Qyh" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" priority="250" id="fOq-53-y6D"/>
                             <constraint firstItem="xx3-Kj-CKR" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fpi-wA-fVe"/>
                             <constraint firstItem="grG-fw-oec" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="fzl-z6-QZO"/>
-                            <constraint firstItem="Qc4-Rz-ezJ" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="gEQ-ct-fxm"/>
+                            <constraint firstItem="Qc4-Rz-ezJ" firstAttribute="top" relation="greaterThanOrEqual" secondItem="y3c-jy-aDJ" secondAttribute="bottom" priority="750" constant="8" id="gEQ-ct-fxm"/>
                             <constraint firstItem="TCz-Vd-Qyh" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="j0H-4O-VDe"/>
-                            <constraint firstItem="TCz-Vd-Qyh" firstAttribute="top" relation="greaterThanOrEqual" secondItem="xx3-Kj-CKR" secondAttribute="bottom" constant="16" id="lPM-yW-WEI"/>
                             <constraint firstItem="xx3-Kj-CKR" firstAttribute="top" secondItem="Qc4-Rz-ezJ" secondAttribute="bottom" constant="8" id="m49-fe-ql2"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="grG-fw-oec" secondAttribute="bottom" id="rQE-XM-rRA"/>
                             <constraint firstItem="qXg-bP-q8b" firstAttribute="top" secondItem="TCz-Vd-Qyh" secondAttribute="bottom" constant="10" id="rik-kR-Jx3"/>
