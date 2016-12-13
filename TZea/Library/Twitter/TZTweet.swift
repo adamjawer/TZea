@@ -150,7 +150,7 @@ struct TZTweet {
             
             let dateFormatter = DateFormatter()
             dateFormatter.dateStyle = .short
-            return dateFormatter.string(from: date)            
+            return dateFormatter.string(from: date)
         } else {
             return ""
         }
