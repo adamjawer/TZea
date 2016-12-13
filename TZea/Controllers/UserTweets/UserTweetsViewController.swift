@@ -40,6 +40,9 @@ class UserTweetsViewController: UIViewController {
     @IBOutlet weak var refreshArrow: UIImageView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    
+    
+    
     var lastTweetCount: Int = 0
     
     var coreDataStack: CoreDataStack!
@@ -54,8 +57,6 @@ class UserTweetsViewController: UIViewController {
             self.configButtonPressed()
         }
         
-        refreshArrow.alpha = 0
-        
         tableView.contentInset = UIEdgeInsets(top: Constants.tableContentOffsetY, left: 0, bottom: 0, right: 0)
         
         setNeedsStatusBarAppearanceUpdate()
@@ -66,6 +67,9 @@ class UserTweetsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
+        refreshArrow.alpha = 0
+        
         tableView.reloadData()
         
         navigationController?.setNavigationBarHidden(true, animated: false)
@@ -129,6 +133,7 @@ class UserTweetsViewController: UIViewController {
     
     private func signOut() {
         TwitterHelper.sharedInstance().signOutOfTwitter()
+        _fetchedResultsController = nil
         
         performSegue(withIdentifier: "ShowLoginView", sender: nil)
     }

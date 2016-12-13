@@ -26,6 +26,7 @@
 		486C029A1DFCA47D005EF10B /* CoreDataTestTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486C02991DFCA47D005EF10B /* CoreDataTestTableViewController.swift */; };
 		486C02C01DFDF13D005EF10B /* TweetDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486C02BF1DFDF13D005EF10B /* TweetDetailViewController.swift */; };
 		486C02C51DFF220E005EF10B /* TweetDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486C02C41DFF220E005EF10B /* TweetDetailTableViewCell.swift */; };
+		486D8C291E005E5C00878BB6 /* DisplayImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486D8C281E005E5C00878BB6 /* DisplayImageViewController.swift */; };
 		48D01BDE1DFAF15F002C3291 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D01BDD1DFAF15F002C3291 /* ImageCache.swift */; };
 		48D50A871DF8AE54003A496C /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D50A861DF8AE54003A496C /* ComposeViewController.swift */; };
 		48D50A8A1DF8B0CB003A496C /* ComposeToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D50A891DF8B0CB003A496C /* ComposeToolbar.swift */; };
@@ -82,6 +83,7 @@
 		486C02991DFCA47D005EF10B /* CoreDataTestTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataTestTableViewController.swift; sourceTree = "<group>"; };
 		486C02BF1DFDF13D005EF10B /* TweetDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetDetailViewController.swift; sourceTree = "<group>"; };
 		486C02C41DFF220E005EF10B /* TweetDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetDetailTableViewCell.swift; sourceTree = "<group>"; };
+		486D8C281E005E5C00878BB6 /* DisplayImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayImageViewController.swift; sourceTree = "<group>"; };
 		4894696C1DF83DDE00D5CD0E /* TZea.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TZea.entitlements; sourceTree = "<group>"; };
 		48D01BDD1DFAF15F002C3291 /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		48D50A861DF8AE54003A496C /* ComposeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
@@ -259,6 +261,14 @@
 			name = Cells;
 			sourceTree = "<group>";
 		};
+		486D8C271E005E3500878BB6 /* DisplayImage */ = {
+			isa = PBXGroup;
+			children = (
+				486D8C281E005E5C00878BB6 /* DisplayImageViewController.swift */,
+			);
+			path = DisplayImage;
+			sourceTree = "<group>";
+		};
 		48D01BDC1DFAF13F002C3291 /* ImageCache */ = {
 			isa = PBXGroup;
 			children = (
@@ -320,6 +330,7 @@
 		48F1E30B1DF7B55200ECBB91 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				486D8C271E005E3500878BB6 /* DisplayImage */,
 				486C02BE1DFDF115005EF10B /* TweetDetail */,
 				481265271DFC465E00A9FFF2 /* LaunchViewController */,
 				48D50A851DF8AE3E003A496C /* Compose */,
@@ -595,6 +606,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				481265251DFBB1D700A9FFF2 /* CDTweet+CoreDataClass.swift in Sources */,
+				486D8C291E005E5C00878BB6 /* DisplayImageViewController.swift in Sources */,
 				4812651E1DFBAF7A00A9FFF2 /* TZea.xcdatamodeld in Sources */,
 				48D01BDE1DFAF15F002C3291 /* ImageCache.swift in Sources */,
 				48D50A8A1DF8B0CB003A496C /* ComposeToolbar.swift in Sources */,

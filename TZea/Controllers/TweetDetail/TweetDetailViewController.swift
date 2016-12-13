@@ -29,6 +29,15 @@ class TweetDetailViewController: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: false)
         tableView.contentInset = UIEdgeInsets(top: -64, left: 0, bottom: 0, right: 0)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowImage" {
+            if let controller = segue.destination as? DisplayImageViewController {
+                
+                controller.tweet = tweet
+            }
+        }
+    }
 }
 
 extension TweetDetailViewController: UITableViewDataSource, UITableViewDelegate {

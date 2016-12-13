@@ -47,6 +47,14 @@ struct TZTweet {
         
     }
     
+    func inReplyToString() -> String? {
+        if let replyScreenName = json["in_reply_to_screen_name"].string {
+            return "In reply to \(replyScreenName)"
+        } else {
+            return nil
+        }
+    }
+    
     func userId() -> Int64 {
         return json["user"]["id"].int64Value
     }
@@ -62,6 +70,19 @@ struct TZTweet {
     func screenName() -> String {
         return "@" + json["user"]["screen_name"].stringValue
     }
+    
+    func retweetCount() -> Int {
+        return json["retweeted_status"]["retweet_count"].intValue
+    }
+
+    func favoriteCount() -> Int {
+        return json["retweeted_status"]["favorite_count"].intValue
+    }
+
+    func favorited() -> Bool {
+        return json["retweeted_status"]["favorited"].boolValue
+    }
+
     
     func createdDate() -> Date? {
         //  Twitter JSON date string is formatted like this: "Sat Oct 25 14:05:58 +0000 2014"
