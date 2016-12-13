@@ -40,6 +40,8 @@ class UserTweetsViewController: UIViewController {
     @IBOutlet weak var refreshArrow: UIImageView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    var lastTweetCount: Int = 0
+    
     var coreDataStack: CoreDataStack!
     
     var isLoadingTweets: Bool = false
@@ -64,6 +66,7 @@ class UserTweetsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        tableView.reloadData()
         
         navigationController?.setNavigationBarHidden(true, animated: false)
         
@@ -72,6 +75,7 @@ class UserTweetsViewController: UIViewController {
             performSegue(withIdentifier: "ShowLoginView", sender: nil)
         } else {
             getUserInfo()
+            
             loadTweets(inDirection: .getNewer)
         }
     }
@@ -144,6 +148,8 @@ class UserTweetsViewController: UIViewController {
                 fatalError("Unable to load entities")
             }
             
+            var didAddTweets: Bool = false
+            
             // add these tweets to core data and update the fetched results controller
             for tzTweet in tweets! {
                 // does this tweet already exist?
@@ -158,14 +164,21 @@ class UserTweetsViewController: UIViewController {
                 tweet.userId = tzTweet.userId()
                 tweet.createdDate = tzTweet.createdDate()?.getSwiftNSDate()
                 tweet.json = tzTweet.getJsonAsNSData()
+                
+                didAddTweets = true
             }
             
             if self.coreDataStack.managedObjectContext.hasChanges {
                 self.coreDataStack.saveMainContext()
             }
             
-            self.updateTweetCount()
             self.activityIndicator.stopAnimating()
+            
+            // Did we add any?
+            if didAddTweets {
+                self.updateTweetCount()
+            }
+            
         }
     }
     
@@ -180,6 +193,8 @@ class UserTweetsViewController: UIViewController {
         }
         self.bannerTweetCountLabel.text = "\(tweetCount) Tweet\(pluralS)"
         self._fetchedResultsController = nil
+        
+        // only update if we actually changed the database
         self.tableView.reloadData()
     }
     
@@ -326,7 +341,6 @@ class UserTweetsViewController: UIViewController {
         
         return _fetchedResultsController!
     }
-    
 }
 
 extension UserTweetsViewController: UITableViewDataSource, UITableViewDelegate {
@@ -388,8 +402,6 @@ extension UserTweetsViewController: UIScrollViewDelegate {
         let offsetY = scrollView.contentOffset.y + Constants.tableContentOffsetY
         
         if offsetY <= 0 {
-            print(offsetY)
-            
             bannerView.transform = CGAffineTransform.identity
             bannerTitleContainer.transform = CGAffineTransform.identity
             headerView.userNameLabel.alpha = 1
