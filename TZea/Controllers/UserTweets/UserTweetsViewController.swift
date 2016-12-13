@@ -179,9 +179,12 @@ class UserTweetsViewController: UIViewController {
             
             self.activityIndicator.stopAnimating()
             
+            self.updateTweetCount()
+            
             // Did we add any?
             if didAddTweets {
-                self.updateTweetCount()
+                self._fetchedResultsController = nil
+                self.tableView.reloadData()
             }
             
         }
@@ -197,10 +200,6 @@ class UserTweetsViewController: UIViewController {
             pluralS = "s"
         }
         self.bannerTweetCountLabel.text = "\(tweetCount) Tweet\(pluralS)"
-        self._fetchedResultsController = nil
-        
-        // only update if we actually changed the database
-        self.tableView.reloadData()
     }
     
     func getNumberOfTweetsForSessionUser() -> Int {
