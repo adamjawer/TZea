@@ -12,6 +12,7 @@ class ComposeViewController: UIViewController {
 
     @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var promptLabel: UILabel!
     
     var composeToolbar: ComposeToolbar!
     
@@ -28,6 +29,7 @@ class ComposeViewController: UIViewController {
         
         textView.inputAccessoryView = composeToolbar
         composeToolbar.setTweetButton(enabled: false)
+        promptLabel.text = "What's on your mind?"
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -86,5 +88,10 @@ extension ComposeViewController: UITextViewDelegate {
         } else {
             return false
         }
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        let count = textView.text?.characters.count ?? 0
+        promptLabel.alpha = (count == 0) ? 1 : 0
     }
 }
