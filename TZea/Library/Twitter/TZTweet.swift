@@ -60,7 +60,7 @@ struct TZTweet {
     }
     
     func screenName() -> String {
-        return json["user"]["screen_name"].stringValue
+        return "@" + json["user"]["screen_name"].stringValue
     }
     
     func createdDate() -> Date? {
@@ -123,9 +123,34 @@ struct TZTweet {
     
     func formattedTweetDate() -> String {
         if let date = createdDate() {
+            // how many seconds ago?
+            let s = Int(floor(fabs(date.timeIntervalSinceNow)))
+            
+            if s < 60 {
+                return "(\(s)s"
+            }
+            
+            let m = s / 60
+            
+            if m < 60 {
+                return "\(m)m"
+            }
+            
+            let h = m / 60
+            
+            if h < 24 {
+                return "\(h)h"
+            }
+            
+            let d = h / 24
+            
+            if d < 7 {
+                return "\(d)d"
+            }
+            
             let dateFormatter = DateFormatter()
             dateFormatter.dateStyle = .short
-            return dateFormatter.string(from: date)
+            return dateFormatter.string(from: date)            
         } else {
             return ""
         }
@@ -158,10 +183,6 @@ struct TZTweet {
     }
     
     func text(formattedFor destination: TweetFormatDestination) -> NSAttributedString? {
-//        if isRetweeted() {
-//            print(json)
-//        }
-        
         let font: UIFont
         switch  destination {
         case .list:
